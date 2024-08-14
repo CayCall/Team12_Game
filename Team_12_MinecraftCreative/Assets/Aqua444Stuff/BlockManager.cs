@@ -19,8 +19,6 @@ public class BlockManager : MonoBehaviour
     private Color normalColor;
     public Color highlightedColor;
 
-    [SerializeField] Renderer Rendered;
-
     GameObject lastHightlightedBlock;
 
     public List<GameObject> Blocks = new List<GameObject>();
@@ -118,3 +116,5 @@ public class BlockManager : MonoBehaviour
         }
     }
 }
+
+//https://www.youtube.com/watch?v=J4y_orHzcXQ

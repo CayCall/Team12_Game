@@ -16,8 +16,10 @@ public class BlockManager : MonoBehaviour
 
     public Transform parent;
 
-    public Color normalColor;
+    private Color normalColor;
     public Color highlightedColor;
+
+    [SerializeField] Renderer Rendered;
 
     GameObject lastHightlightedBlock;
 
@@ -32,21 +34,26 @@ public class BlockManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Block = Blocks[0];
+            normalColor = Block.GetComponent<MeshRenderer>().sharedMaterial.color;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             Block = Blocks[1];
+
+            normalColor = Block.GetComponent<MeshRenderer>().sharedMaterial.color;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             Block = Blocks[2];
+            normalColor = Block.GetComponent<MeshRenderer>().sharedMaterial.color;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             Block = Blocks[3];
+            normalColor = Block.GetComponent<MeshRenderer>().sharedMaterial.color;
         }
 
 

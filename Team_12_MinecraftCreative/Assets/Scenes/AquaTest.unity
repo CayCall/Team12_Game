@@ -460,7 +460,7 @@ Transform:
   m_GameObject: {fileID: 1661587773}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -650,10 +650,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 2079631856}
+  BlockMat: {fileID: 2100000, guid: 36aec5a3730fc644c88d856360b649f1, type: 2}
   Block: {fileID: 5926502609658300668, guid: d501f5d930d44244994d696f3ee3cffa, type: 3}
   parent: {fileID: 2074261477}
-  normalColor: {r: 1, g: 1, b: 1, a: 0}
   highlightedColor: {r: 1, g: 0.9763025, b: 0.64716977, a: 0}
+  Rendered: {fileID: 1013907236331367084, guid: e939572d2c5b2984e9ec1ee466c5dc8b, type: 3}
   Blocks:
   - {fileID: 5926502609658300668, guid: d501f5d930d44244994d696f3ee3cffa, type: 3}
   - {fileID: 3439915223290508942, guid: e939572d2c5b2984e9ec1ee466c5dc8b, type: 3}

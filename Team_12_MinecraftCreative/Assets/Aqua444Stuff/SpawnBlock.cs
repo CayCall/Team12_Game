@@ -12,6 +12,26 @@ public class SpawnBlock : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Block = Blocks[0];
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Block = Blocks[1];
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Block = Blocks[2]; 
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Block = Blocks[3];
+        }
+
         // click left mouse button to place block
         if (Input.GetMouseButtonDown(0))
         {

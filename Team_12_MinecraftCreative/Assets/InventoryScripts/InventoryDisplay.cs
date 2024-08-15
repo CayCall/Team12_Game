@@ -15,7 +15,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
     public InventorySlot invSlot;
 
     bool highlightInvSlot;
-    [SerializeField] Image backdropImage;
+    //[SerializeField] Image backdropImage;
     Color backdropColor;
 
     [SerializeField] MouseItemData mouseInvItem;
@@ -297,7 +297,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
     // Start is called before the first frame update
     void Start()
     {
-        backdropColor = backdropImage.color;
+        //backdropColor = backdropImage.color;
         highlightInvSlot = false;
         //itemImage = itemImageHolder.GetComponent<Image>().sprite;
 

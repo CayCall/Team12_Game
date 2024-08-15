@@ -650,16 +650,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 2079631856}
-  BlockMat: {fileID: 2100000, guid: 36aec5a3730fc644c88d856360b649f1, type: 2}
   Block: {fileID: 5926502609658300668, guid: d501f5d930d44244994d696f3ee3cffa, type: 3}
   parent: {fileID: 2074261477}
   highlightedColor: {r: 1, g: 0.9763025, b: 0.64716977, a: 0}
-  Rendered: {fileID: 1013907236331367084, guid: e939572d2c5b2984e9ec1ee466c5dc8b, type: 3}
   Blocks:
   - {fileID: 5926502609658300668, guid: d501f5d930d44244994d696f3ee3cffa, type: 3}
   - {fileID: 3439915223290508942, guid: e939572d2c5b2984e9ec1ee466c5dc8b, type: 3}
   - {fileID: 7836088350731981049, guid: e3e567fe3de4dd847aea6c715772e8db, type: 3}
   - {fileID: 5068246275644534345, guid: 2fe79a04c4dd461428dd85e97bbae13c, type: 3}
+  ProperBlocks: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

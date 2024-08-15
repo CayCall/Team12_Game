@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7418060583913037709}
   m_Layer: 0
   m_Name: PurpleBlock
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

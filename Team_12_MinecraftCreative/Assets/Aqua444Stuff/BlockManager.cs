@@ -23,6 +23,8 @@ public class BlockManager : MonoBehaviour
 
     public List<GameObject> Blocks = new List<GameObject>();
 
+    public List<ScriptableObject> ProperBlocks = new List<ScriptableObject>(); // scriptable object attempt???
+
     private void Start()
     {
         BlockObject = Block;

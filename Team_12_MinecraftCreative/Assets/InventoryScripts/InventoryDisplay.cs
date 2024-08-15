@@ -22,8 +22,8 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
 
     public RectTransform invPanel;
 
-    public Button activeButton;
-    public Button dropButton;
+    //public Button activeButton;
+    //public Button dropButton;
 
     //public DropLoot dropLoot;
 
@@ -44,7 +44,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
         if (invSlot.itemData != null)
         {
 
-            HighlightOn();
+            //HighlightOn();
 
         }
 
@@ -62,7 +62,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
             Debug.Log("Drag begin");
             mouseInvItem.UpdateMouseSlot(invSlot);
             invSlot.ClearSlot();
-            HighlightOff();
+            //HighlightOff();
 
             return;
         }
@@ -86,7 +86,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
             Debug.Log("Drag ended" + this.gameObject);
             invSlot.AsignSlot(mouseInvItem.asgInvSlot);
             mouseInvItem.ClearSlot();
-            HighlightOff();
+            //HighlightOff();
         }
         else
         {
@@ -139,7 +139,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
 
     }
 
-    public void HighlightOn()
+  /*  public void HighlightOn()
     {
 
         backdropImage.color = Color.yellow;
@@ -157,10 +157,10 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
         DisplayStat();
 
     }
+*/
 
 
-
-
+/*
     public void HighlightOff()
     {
         if (highlightInvSlot == true)
@@ -175,8 +175,8 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
             HideStat();
         }
 
-    }
-
+    }*/
+/*
     public void HighligtActive()
     {
         if (highlightInvSlot == true && activeWeapon == true)
@@ -190,7 +190,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
         }
     }
 
-
+*/
 
 
    /* public void LootToDrop()
@@ -215,7 +215,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
         if (invSlot.stackSize == 0)
         {
             invSlot.ClearSlot();
-            HighlightOff();
+           // HighlightOff();
         }
     }
 
@@ -301,8 +301,8 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
         highlightInvSlot = false;
         //itemImage = itemImageHolder.GetComponent<Image>().sprite;
 
-        activeButton.interactable = false;
-        dropButton.interactable = false;
+        //activeButton.interactable = false;
+        //dropButton.interactable = false;
 
 
         weaponControl = GameObject.Find("ActiveWeapon");
@@ -323,7 +323,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
     {
         UpdateSlot();
 
-        HighligtActive();
+        //HighligtActive();
 
         SlotBecomeEmpty();
 

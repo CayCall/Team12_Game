@@ -107,7 +107,7 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-
+/*
     public void CheckHighlights(InventorySlot invSlot)
     {
         foreach (InventorySlot slot in slots)
@@ -117,7 +117,7 @@ public class InventorySystem : MonoBehaviour
                 slot.GetComponent<InventoryDisplay>().HighlightOff();
             }
         }
-    }
+    }*/
 
 
     public void CheckActive(InventorySlot invSlot)
@@ -176,7 +176,7 @@ public class InventorySystem : MonoBehaviour
         }
     }
 */
-    public void LootWeaponToDeactivation(ItemData lootedItem)
+  /*  public void LootWeaponToDeactivation(ItemData lootedItem)
     {
         foreach (InventorySlot slot in slots)
         {
@@ -189,7 +189,7 @@ public class InventorySystem : MonoBehaviour
             }
         }
     }
-
+*/
   /*  public void WeaponMouseWheelDown(int mouseWeapon)
     {
 

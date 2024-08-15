@@ -145,6 +145,8 @@ GameObject:
   - component: {fileID: 2011133157517382956}
   - component: {fileID: 4791314927422631124}
   - component: {fileID: 6696326274030330816}
+  - component: {fileID: 7169455961453948139}
+  - component: {fileID: 7090310482605926994}
   m_Layer: 5
   m_Name: InventorySlot_UI
   m_TagString: Untagged
@@ -211,6 +213,42 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7169455961453948139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817428704190961279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 595e07b9bec60924f9281dd3488bc7ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 0}
+  stackSize: -1
+--- !u!114 &7090310482605926994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817428704190961279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6625b77da39ee834b933615611acb732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCount: {fileID: 0}
+  itemImageHolder: {fileID: 0}
+  invSlot: {fileID: 0}
+  backdropImage: {fileID: 0}
+  mouseInvItem: {fileID: 0}
+  invPanel: {fileID: 0}
+  activeButton: {fileID: 0}
+  dropButton: {fileID: 0}
+  statDisplayImage: {fileID: 0}
+  statDisplayText: {fileID: 0}
 --- !u!1 &5521472274774924107
 GameObject:
   m_ObjectHideFlags: 0

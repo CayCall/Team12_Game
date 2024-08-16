@@ -73,14 +73,23 @@ public class playerMovement : MonoBehaviour
         isWalking = curSpeedX != 0 || curSpeedY != 0;
 
         // Jumping
-
+        if (Input.GetButton("Jump") && canMove && _characterController.isGrounded)
+        {
+            moveDirection.y = JumpPower;
+        }
+        else
+        {
+            moveDirection.y = movementDirectionY;
+        }
 
         if (!_characterController.isGrounded)
         {
             moveDirection.y -= gravity * Time.deltaTime;
         }
+        
 
         _characterController.Move(moveDirection * Time.deltaTime);
+
 
         // Smoothly interpolate between current and target positions
         Vector3 targetPosition = initialPosition;

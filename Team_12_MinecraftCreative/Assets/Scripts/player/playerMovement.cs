@@ -94,7 +94,6 @@ public class playerMovement : MonoBehaviour
             }
 
             _characterController.Move(moveDirection * Time.deltaTime);
-                ..08/.
             Vector3 targetPosition = initialPosition;
             if (isWalking)
             {

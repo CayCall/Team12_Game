@@ -16,6 +16,8 @@ public class InventoryLinq : MonoBehaviour
 
     public float scrollScale = 0.1f;
 
+    ItemData indicatedItem;
+
 
     void Indicating()
     {
@@ -24,6 +26,7 @@ public class InventoryLinq : MonoBehaviour
             if(activeInvSystem.slots.IndexOf(slot) == invIndex)
             {
                 slot.indicator.SetActive(true);
+                indicatedItem = slot.itemData; //we can then use this information to determine what kind of block to build
             }
 
             else
@@ -43,6 +46,19 @@ public class InventoryLinq : MonoBehaviour
        
         }
     }
+
+
+    public ItemData LinqIndicatedItem() //function to call the item you wish to build or use based on its item data
+    {
+        if (indicatedItem != null)
+        {
+            return indicatedItem;
+        }
+
+        Debug.Log("We cannot do anything");
+        return null;
+    }
+
 
     // Start is called before the first frame update
     void Start()

@@ -213,6 +213,9 @@ MonoBehaviour:
   AvailableBuildingBlocks:
   - {fileID: 11400000, guid: 69d790bbc6941ff4bbfd97d114c92b3c, type: 2}
   - {fileID: 11400000, guid: 81c52d1855d792643b5a1df25281174b, type: 2}
+  - {fileID: 11400000, guid: 55ff89670d25d7249ae3c0f32e7f500e, type: 2}
+  - {fileID: 11400000, guid: 67137d195ce2a05419a6f3692c971224, type: 2}
+  - {fileID: 11400000, guid: 15e70c23c4070b9468b84374eced5c8e, type: 2}
   parent: {fileID: 2074261477}
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   highlightedColor: {r: 1, g: 0.49321428, b: 0.35283017, a: 0}

@@ -85,6 +85,7 @@ public class playerMovement : MonoBehaviour
         if (!_characterController.isGrounded)
         {
             moveDirection.y -= gravity * Time.deltaTime;
+            
         }
         
 

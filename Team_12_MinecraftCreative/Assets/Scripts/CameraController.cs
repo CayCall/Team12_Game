@@ -1,36 +1,35 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private GameObject firstPerson;
-    private GameObject ThirdPerson;
-    [SerializeField]private GameObject[] Cameras;
-    private int changeTime;
-
-    private void Start()
-    {
-        GetReferences();
+    public GameObject[] cameraList;
+    private int currentCamera;
+    void Start () {
+        currentCamera = 0;
+        for (int i = 0; i < cameraList.Length; i++){
+        }
+      
+        if (cameraList.Length > 0){
+            cameraList[0].gameObject.SetActive (true);
+        }
     }
-
-    private  void GetReferences()
-    {
-        firstPerson = GameObject.Find("Main Camera");
-        ThirdPerson = GameObject.Find("ThirdPersonCamera");
-    }
-
-    private void Update()
-    {
-        changeCamera();   
-    }
-
-    private void changeCamera()
-    {
-       if (Input.GetKeyDown(KeyCode.G))
-        {
-            
-        }   
+  
+    void Update () {
+        if (Input.GetKeyDown(KeyCode.G)){
+            currentCamera ++;
+            if (currentCamera < cameraList.Length){
+                cameraList[currentCamera - 1].gameObject.SetActive(false);
+                cameraList[currentCamera].gameObject.SetActive(true);
+            }
+            else {
+                cameraList[currentCamera - 1].gameObject.SetActive(false);
+                currentCamera = 0;
+                cameraList[currentCamera].gameObject.SetActive(true);
+            }
+        }
     }
 }

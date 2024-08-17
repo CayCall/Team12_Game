@@ -2,70 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.UI;
 
 public class BlockManager : MonoBehaviour
 {
     public Transform shootingPoint;
 
-    private GameObject BlockObject;
+    private Block BlockObject;
 
-    private Vector3 mousePos;
-    private Vector3 objectPos;
+    public Text BlockInfo;
 
-    public GameObject Block;
+    public Block[] AvailableBuildingBlocks;
+    int CurrentBlockIndex = 0;
+
+    private GameObject Block;
 
     public Transform parent;
 
-    private Color normalColor;
+    public Color normalColor;
     public Color highlightedColor;
 
     GameObject lastHightlightedBlock;
 
-    public List<GameObject> Blocks = new List<GameObject>();
-
-    public List<ScriptableObject> ProperBlocks = new List<ScriptableObject>(); // scriptable object attempt???
-
-    private void Start()
-    {
-        BlockObject = Block;
-    }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Block = Blocks[0];
-            normalColor = Block.GetComponent<MeshRenderer>().sharedMaterial.color;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Block = Blocks[1];
-
-            normalColor = Block.GetComponent<MeshRenderer>().sharedMaterial.color;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Block = Blocks[2];
-            normalColor = Block.GetComponent<MeshRenderer>().sharedMaterial.color;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Block = Blocks[3];
-            normalColor = Block.GetComponent<MeshRenderer>().sharedMaterial.color;
-        }
-
-
         if (Input.GetMouseButtonDown(0))
         {
-            BuildBlock(BlockObject);
+            BuildBlock(BlockObject.BlockObject);
         }
         if (Input.GetMouseButtonDown(1))
         {
             DestroyBlock();
         }
         HighlightBlock();
+        ChangeCurretBlock();
+    }
+
+    private void Start()
+    {
+        SetText();
     }
 
     void BuildBlock(GameObject block)
@@ -86,6 +61,33 @@ public class BlockManager : MonoBehaviour
         }
     }
 
+    void ChangeCurretBlock()
+    {
+        float Scroll = Input.mouseScrollDelta.y;
+        if (Scroll > 0)
+        {
+            CurrentBlockIndex++;
+            if (CurrentBlockIndex > AvailableBuildingBlocks.Length - 1)
+            {
+                CurrentBlockIndex = 0;
+            }
+        }
+        else if (Scroll < 0)
+        {
+            CurrentBlockIndex--;
+            if (CurrentBlockIndex < 0)
+            {
+                CurrentBlockIndex = AvailableBuildingBlocks.Length - 1; 
+            }
+        }
+        BlockObject = AvailableBuildingBlocks[CurrentBlockIndex];
+        SetText();
+    }
+
+    void SetText() //Change/ Remove this
+    {
+        BlockInfo.text = BlockObject.BlockName + "\n" + BlockObject.BlockAmount + "x" + BlockObject.ItemsNeededForBuildingBlock;
+    }
     void DestroyBlock()
     {
         if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo))
@@ -115,6 +117,11 @@ public class BlockManager : MonoBehaviour
                     lastHightlightedBlock = hitInfo.transform.gameObject;
                 }
             }
+        }
+        else if (lastHightlightedBlock != null)
+        {
+            lastHightlightedBlock.GetComponent<Renderer>().material.color = normalColor;
+            lastHightlightedBlock = null;
         }
     }
 }

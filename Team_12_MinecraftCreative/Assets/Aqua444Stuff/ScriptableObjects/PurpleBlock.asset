@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f21c07f48f187544a01ee3ecae40ff4, type: 3}
+  m_Name: PurpleBlock
+  m_EditorClassIdentifier: 
+  BlockName: PurpleBlock
+  BlockObject: {fileID: 7836088350731981049, guid: e3e567fe3de4dd847aea6c715772e8db, type: 3}
+  ItemsNeededForBuildingBlock: BlueBlock
+  BlockAmount: 1

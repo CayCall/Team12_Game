@@ -228,6 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 0}
   stackSize: -1
+  indicator: {fileID: 8348008962345659870}
 --- !u!114 &7090310482605926994
 MonoBehaviour:
   m_ObjectHideFlags: 0

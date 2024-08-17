@@ -10,6 +10,9 @@ public class InventorySlot : MonoBehaviour
 
     public int stackSize;
 
+    public GameObject indicator;
+
+
     public InventorySlot()
     {
         ClearSlot();
@@ -97,7 +100,7 @@ public class InventorySlot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        indicator.SetActive(false);
     }
 
     // Update is called once per frame

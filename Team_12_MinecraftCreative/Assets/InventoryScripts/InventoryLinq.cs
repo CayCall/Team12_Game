@@ -14,10 +14,23 @@ public class InventoryLinq : MonoBehaviour
 
     [SerializeField] int invIndex = 0;
 
+    public float scrollScale = 0.1f;
+
 
     void Indicating()
     {
-       
+       foreach(InventorySlot slot in activeInvSystem.slots)
+        {
+            if(activeInvSystem.slots.IndexOf(slot) == invIndex)
+            {
+                slot.indicator.SetActive(true);
+            }
+
+            else
+            {
+                slot.indicator.SetActive(false);    
+            }
+        }
     }
 
     void Matching()
@@ -40,6 +53,28 @@ public class InventoryLinq : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        Indicating();
+
         Matching();
+
+
+
+
+        if (Input.mouseScrollDelta.y * scrollScale * Time.deltaTime > 0)
+        {
+            Debug.Log("If you had a weapon");
+
+          //coroutine 
+
+        }
+        else if (Input.mouseScrollDelta.y * scrollScale * Time.deltaTime < 0)
+        {
+            Debug.Log("It would have equipped");
+
+      
+        }
+
+
     }
 }

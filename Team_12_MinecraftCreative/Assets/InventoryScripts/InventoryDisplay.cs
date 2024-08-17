@@ -41,24 +41,71 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
     {
         Debug.Log("We've clicked on an inventory slot");
 
-        if (invSlot.itemData != null)
+        if(eventData.button == PointerEventData.InputButton.Left)
+        {
+            Debug.Log("We left clicked the slot");
+        }
+        else if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            Debug.Log("We right clicked");
+        }
+
+
+
+        if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null) //Begin Drag
         {
 
             //HighlightOn();
+           
+            Debug.Log("Clicked a slot");
+            mouseInvItem.UpdateMouseSlot(invSlot);
+            invSlot.ClearSlot();
+            mouseInvItem.mouseCanvasGroup.blocksRaycasts = false;
+            //HighlightOff();
+
+            return;
 
 
         }
 
-        else if (invSlot.itemData == null)
+        else if (invSlot.itemData == null && mouseInvItem.asgInvSlot.itemData != null) // Drop
         {
 
+
+
+            Debug.Log("Drop made");
+            invSlot.AsignSlot(mouseInvItem.asgInvSlot);
+            mouseInvItem.ClearSlot();
+
+
         }
+
+        else if(invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData != null)
+        {
+            Debug.Log("Switch");
+            var itemSwitch = invSlot.itemData;
+            var stackSwitch = invSlot.stackSize;
+
+            InventorySlot switchSlot = new InventorySlot();
+            switchSlot.UpdateInventorySlot(itemSwitch,stackSwitch);
+
+            invSlot.AsignSlot(mouseInvItem.asgInvSlot);
+            mouseInvItem.UpdateMouseSlot(switchSlot);
+
+            return;
+        }
+
+      
+
+       
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         //So if the slot we click on has an item, and the mouse does not have an item, we want to pick up
-       if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null)
+
+
+      /* if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null)
         {
             Debug.Log("Drag begin");
             mouseInvItem.UpdateMouseSlot(invSlot);
@@ -67,7 +114,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
             //HighlightOff();
 
             return;
-        }
+        }*/
 
 
     }
@@ -82,22 +129,22 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        //Debug.Log("Drag Ended");
-
-            //slot doesnt have an item
-            if (invSlot.itemData == null && mouseInvItem.asgInvSlot.itemData != null)
-            {
-                Debug.Log("Drag ended" + this.gameObject);
-                //mouseInvItem.mouseCanvasGroup.blocksRaycasts = true;
-                invSlot.AsignSlot(mouseInvItem.asgInvSlot);
-                mouseInvItem.ClearSlot();
-                //HighlightOff();
-            }
-            else
-            {
-                Debug.Log("First condition didnt work");
-            }
-        
+        Debug.Log("Drag Ended");
+        /* 
+             //slot doesnt have an item
+             if (invSlot.itemData == null && mouseInvItem.asgInvSlot.itemData != null)
+             {
+                 Debug.Log("Drag ended" + this.gameObject);
+                 //mouseInvItem.mouseCanvasGroup.blocksRaycasts = true;
+                 invSlot.AsignSlot(mouseInvItem.asgInvSlot);
+                 mouseInvItem.ClearSlot();
+                 //HighlightOff();
+             }
+             else
+             {
+                 Debug.Log("First condition didnt work");
+             }
+         */
 
     }
 
@@ -107,7 +154,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
 
         Debug.Log("Drop made");
 
-        if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition))
+     /*   if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition))
         {
             //slot doesnt have an item
             if (invSlot.itemData == null && mouseInvItem.asgInvSlot.itemData != null)
@@ -122,7 +169,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
             }
 
         }
-
+*/
 
     }
 

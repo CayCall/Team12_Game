@@ -31,7 +31,7 @@ public class InventorySlot : MonoBehaviour
 
     public void AsignSlot(InventorySlot invSlot)
     {
-
+        //Debug.Log("Assigning slot " + this.gameObject);
         if (itemData == invSlot.itemData)
         {
             AddToStack(invSlot.stackSize);

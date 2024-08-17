@@ -48,19 +48,18 @@ public class InventorySystem : MonoBehaviour
 
             }
 
-            else
-            {
-                if (!itemAdded)
-                {
+           
+        }
 
-                }
-                slot.UpdateInventorySlot(itemToAdd, amountToAdd);
-                Debug.Log("We found an empty slot");
-                //itemAdded = true;
+        //split so that we ensure all slots  are searched first before we try put inventory into an empty slot
+        foreach(InventorySlot slot in slots)
+        {
+            if(slot.itemData == null)
+            {
+                slot.UpdateInventorySlot(itemToAdd,amountToAdd);
+                Debug.Log("we found an empty slot");
                 return true;
             }
-
-
         }
 
 

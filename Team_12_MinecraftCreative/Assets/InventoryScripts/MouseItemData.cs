@@ -11,6 +11,8 @@ public class MouseItemData : MonoBehaviour
     public TMP_Text itemStackSize;
     public InventorySlot asgInvSlot;
 
+    public CanvasGroup mouseCanvasGroup;
+
 
     public void ClearSlot()
     {

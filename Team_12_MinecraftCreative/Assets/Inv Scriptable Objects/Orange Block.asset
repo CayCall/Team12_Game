@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Orange Block
   ItemID: 3
-  SlotMax: 0
+  SlotMax: 99
   itemIcon: {fileID: 1768706591, guid: 65b7e0c285ab54140afdf6ddc74790e3, type: 3}
   weaponType: 0
   Description: 

@@ -27,12 +27,12 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
 
     //public DropLoot dropLoot;
 
-    GameObject weaponControl;
+    //GameObject weaponControl;
     bool activeWeapon;
 
     //Stats detailed display
-    [SerializeField] Image statDisplayImage;
-    [SerializeField] TMP_Text statDisplayText;
+    //[SerializeField] Image statDisplayImage;
+    //[SerializeField] TMP_Text statDisplayText;
 
 
 
@@ -46,6 +46,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
 
             //HighlightOn();
 
+
         }
 
         else if (invSlot.itemData == null)
@@ -57,11 +58,12 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
     public void OnBeginDrag(PointerEventData eventData)
     {
         //So if the slot we click on has an item, and the mouse does not have an item, we want to pick up
-        if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null)
+       if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null)
         {
             Debug.Log("Drag begin");
             mouseInvItem.UpdateMouseSlot(invSlot);
             invSlot.ClearSlot();
+            mouseInvItem.mouseCanvasGroup.blocksRaycasts = false;
             //HighlightOff();
 
             return;
@@ -80,23 +82,30 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        //slot doesnt have an item
-        if (invSlot.itemData == null && mouseInvItem.asgInvSlot.itemData != null)
-        {
-            Debug.Log("Drag ended" + this.gameObject);
-            invSlot.AsignSlot(mouseInvItem.asgInvSlot);
-            mouseInvItem.ClearSlot();
-            //HighlightOff();
-        }
-        else
-        {
+        //Debug.Log("Drag Ended");
 
-        }
+            //slot doesnt have an item
+            if (invSlot.itemData == null && mouseInvItem.asgInvSlot.itemData != null)
+            {
+                Debug.Log("Drag ended" + this.gameObject);
+                //mouseInvItem.mouseCanvasGroup.blocksRaycasts = true;
+                invSlot.AsignSlot(mouseInvItem.asgInvSlot);
+                mouseInvItem.ClearSlot();
+                //HighlightOff();
+            }
+            else
+            {
+                Debug.Log("First condition didnt work");
+            }
+        
 
     }
 
     public void OnDrop(PointerEventData eventData)
     {
+
+
+        Debug.Log("Drop made");
 
         if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition))
         {
@@ -113,8 +122,6 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
             }
 
         }
-
-
 
 
     }
@@ -255,13 +262,13 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
 
     public void DisplayStat()
     {
-        if (invSlot.itemData.weaponType)
+        /*if (invSlot.itemData.weaponType)
         {
 
             statDisplayImage.color = Color.white;
             statDisplayImage.sprite = invSlot.itemData.itemIcon;
 
-          /*  statDisplayText.text = invSlot.itemData.Description +
+          *//*  statDisplayText.text = invSlot.itemData.Description +
                                    "\n " +
                                    "\n Damage  : " + invSlot.itemData.damage +
                                    "\n Fire Rate  : " + invSlot.itemData.fireRate + " s" +
@@ -269,7 +276,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
                                    "\nAmmo Type  : " + invSlot.itemData.ammoNeeded +
                                    "\n Magazine Size : " + invSlot.itemData.magazineSize +
                                    "\n Maximum Ammo  : " + invSlot.itemData.ammoMax +
-                                   "\n Accuracy  : " + invSlot.itemData.accuracy + "%";*/
+                                   "\n Accuracy  : " + invSlot.itemData.accuracy + "%";*//*
         }
 
         else
@@ -278,16 +285,16 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
             statDisplayImage.sprite = invSlot.itemData.itemIcon;
 
             statDisplayText.text = invSlot.itemData.Description;
-        }
+        }*/
     }
 
     public void HideStat()
     {
-        statDisplayImage.color = Color.clear;
-        statDisplayText.text = "";
+       /* statDisplayImage.color = Color.clear;
+        statDisplayText.text = "";*/
     }
 
-
+    
 
     void Awake()
     {
@@ -305,17 +312,25 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
         //dropButton.interactable = false;
 
 
-        weaponControl = GameObject.Find("ActiveWeapon");
+        //weaponControl = GameObject.Find("ActiveWeapon");
 
         //StatDisplay
-        GameObject statObj = GameObject.Find("ItemInformation");
-        statDisplayImage = statObj.GetComponent<Image>();
+        //GameObject statObj = GameObject.Find("ItemInformation");
+        //statDisplayImage = statObj.GetComponent<Image>();
 
-        GameObject wordObj = GameObject.Find("Stat");
-        statDisplayText = wordObj.GetComponent<TextMeshProUGUI>();
+        //GameObject wordObj = GameObject.Find("Stat");
+        //statDisplayText = wordObj.GetComponent<TextMeshProUGUI>();
 
-        statDisplayImage.color = Color.clear;
-        statDisplayText.text = "";
+        //statDisplayImage.color = Color.clear;
+        //statDisplayText.text = "";
+
+
+        //Mouse Object
+        GameObject mouseObj = GameObject.Find("MouseObject");
+        mouseInvItem = mouseObj.GetComponent<MouseItemData>();
+
+
+
     }
 
     // Update is called once per frame
@@ -326,6 +341,13 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
         //HighligtActive();
 
         SlotBecomeEmpty();
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+
+        }
+
 
         if (highlightInvSlot == true && invSlot.itemData.weaponType)
         {

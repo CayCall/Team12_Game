@@ -59,7 +59,10 @@ public class InventorySlot : MonoBehaviour
     {
         if (stackSize + amount > itemData.SlotMax)
         {
-            FillUpOtherSlot();
+            stackSize = itemData.SlotMax;
+            int fillAmount = stackSize + amount - itemData.SlotMax;
+
+            FillUpOtherSlot(itemData,fillAmount);
         }
         else
         {
@@ -71,11 +74,11 @@ public class InventorySlot : MonoBehaviour
 
     public void RemoveFromStack(int amount)
     {
-        if (amount > stackSize)
+        if (amount >= stackSize)
         {
             TakeToZero();
         }
-        else if (stackSize > 0 && amount <= stackSize)
+        else if (stackSize > 0 && amount < stackSize)
         {
             stackSize -= amount;
         }
@@ -86,14 +89,36 @@ public class InventorySlot : MonoBehaviour
         }
     }
 
-    public void FillUpOtherSlot()
-    {
 
+    public int RemoveRightClick()
+    {
+        //will determine how much to remove from a stack
+        if(stackSize > 1)
+        {
+            int amountToRemove = stackSize / 2;
+
+            stackSize -= amountToRemove;
+            return amountToRemove;
+            
+        }
+
+        else
+        {
+            ClearSlot();
+            return 1;
+        }
+    }
+
+    public void FillUpOtherSlot(ItemData item, int amount)
+    {
+        //this function will reference our inventory system, and basically look for somewhere else to add to stack
+        //an empty slot within our inventory
     }
 
     public void TakeToZero()
     {
-
+        Debug.Log("Depleted Slot");
+        ClearSlot();
     }
 
 

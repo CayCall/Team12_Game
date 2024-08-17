@@ -14,9 +14,12 @@ public class InventoryLinq : MonoBehaviour
 
     [SerializeField] int invIndex = 0;
 
-    public float scrollScale = 0.1f;
+    public float scrollScale = 0.01f;
 
     ItemData indicatedItem;
+
+    float scrollTimer = 0f;
+    [SerializeField]float scrollCooldown = 0.1f;
 
 
     void Indicating()
@@ -60,10 +63,94 @@ public class InventoryLinq : MonoBehaviour
     }
 
 
+    public void InvMouseWheelDown(int number)
+    {
+
+        if (number == -1)
+        {
+            Debug.Log("Error expected");
+        }
+
+        else if (number != -1)
+        {
+           
+
+            for (int i = number + 1; i < activeInvSystem.slots.Count; i++)
+            {
+
+                invIndex = i;
+
+                InventorySlot slot = activeInvSystem.slots[i];
+                InventoryDisplay slotObj = slot.GetComponent<InventoryDisplay>();
+                if (slot.itemData != null)
+                {
+                    //actions can be performed based on index
+
+                    /*if (slot.itemData.weaponType == true)
+                    {
+                        GameObject findObj = GameObject.Find("ActiveWeapon");
+                        ActiveWeapon mouseWield = findObj.GetComponent<ActiveWeapon>();
+                        mouseWield.SetWeapon(slot.itemData);
+
+                        slotObj.DefaultActivate();*//*
+                        return;
+                    }*/
+                }
+
+
+            }
+        }
+    }
+
+    public void InvMouseWheelUp(int number)
+    {
+
+        if (number == -1)
+        {
+            Debug.Log("Error expected");
+        }
+
+        else if (number != -1)
+        {
+
+
+            for (int i = number - 1; i >= 0; i--)
+            {
+
+                invIndex = i;
+
+                InventorySlot slot = activeInvSystem.slots[i];
+                InventoryDisplay slotObj = slot.GetComponent<InventoryDisplay>();
+                if (slot.itemData != null)
+                {
+
+                  //actions based of index are possible
+
+                  /*  if (slot.itemData.weaponType == true)
+                    {
+                        GameObject findObj = GameObject.Find("ActiveWeapon");
+                        ActiveWeapon mouseWield = findObj.GetComponent<ActiveWeapon>();
+                        mouseWield.SetWeapon(slot.itemData);
+
+                        slotObj.DefaultActivate();
+                        return;
+                    }*/
+                }
+            }
+        }
+    }
+
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         activeInvSystem = GetComponent<InventorySystem>();
+        scrollTimer = 0.3f;
+
+        
     }
 
     // Update is called once per frame
@@ -74,19 +161,53 @@ public class InventoryLinq : MonoBehaviour
 
         Matching();
 
-
+        scrollTimer += Time.deltaTime;
 
 
         if (Input.mouseScrollDelta.y * scrollScale * Time.deltaTime > 0)
         {
-            Debug.Log("If you had a weapon");
+            
+            if(scrollTimer > scrollCooldown)
+            {
+                
+                if (invIndex >= 8)
+                {
+                    invIndex = 8;
+                }
+                else
+                {
+                    invIndex++;
+                    scrollTimer = 0;
+                }
+
+            }
+
+
+            //InvMouseWheelUp(invIndex);
 
           //coroutine 
 
         }
         else if (Input.mouseScrollDelta.y * scrollScale * Time.deltaTime < 0)
         {
-            Debug.Log("It would have equipped");
+           
+
+            if(scrollTimer > scrollCooldown)
+            {
+                ;
+                if(invIndex <= 0)
+                {
+                    invIndex = 0;
+                }
+                else
+                {
+                    invIndex--;
+                    scrollTimer = 0;
+                }
+               
+            }
+
+            //InvMouseWheelDown(invIndex);
 
       
         }

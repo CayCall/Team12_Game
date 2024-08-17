@@ -115,7 +115,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainInvSystem: {fileID: 0}
   invIndex: 0
-  scrollScale: 0.1
+  scrollScale: 0.01
+  scrollCooldown: 0.05
 --- !u!1 &1329370136185960278
 GameObject:
   m_ObjectHideFlags: 0

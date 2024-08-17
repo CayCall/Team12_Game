@@ -682,6 +682,10 @@ PrefabInstance:
       value: PlayerHUD
       objectReference: {fileID: 0}
     - target: {fileID: 2965768331198073496, guid: 46873eb175bbfde42ab1b6c031b24bb7, type: 3}
+      propertyPath: scrollScale
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965768331198073496, guid: 46873eb175bbfde42ab1b6c031b24bb7, type: 3}
       propertyPath: mainInvSystem
       value: 
       objectReference: {fileID: 1718376239}

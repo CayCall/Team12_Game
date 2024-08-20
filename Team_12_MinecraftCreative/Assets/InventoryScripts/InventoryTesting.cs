@@ -82,10 +82,13 @@ public class InventoryTesting : MonoBehaviour
             if (invHUD.activeSelf)
             {
                 invHUD.SetActive(false);
+                Time.timeScale = 0f;
             }
             else if (!invHUD.activeSelf)
             {
                 invHUD.SetActive(true);
+                Time.timeScale = 1f;
+                Cursor.lockState = CursorLockMode.None;
             }
         }
 

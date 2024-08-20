@@ -24,11 +24,16 @@ public class BlockManager : MonoBehaviour
 
     GameObject lastHightlightedBlock;
 
+    private bool isInventoryOpen;
+
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!isInventoryOpen )
         {
-            BuildBlock(BlockObject.BlockObject);
+            if (Input.GetMouseButtonDown(0))
+            {
+                BuildBlock(BlockObject.BlockObject);
+            }
         }
         if (Input.GetMouseButtonDown(1))
         {

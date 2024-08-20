@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class InventoryTesting : MonoBehaviour
 {
@@ -21,10 +23,12 @@ public class InventoryTesting : MonoBehaviour
     [SerializeField] ItemData testItem4;
 
     [SerializeField] int itemGenCount = 1;
-
+    
+    //check open or not
+    public bool isInventoryOpen;
+    
     ItemData GenerateItem()
     {
-       
         
         if(itemGenCount == 1)
         {
@@ -63,14 +67,19 @@ public class InventoryTesting : MonoBehaviour
 
     }
 
-
-    void Start()
+    private void Awake()
     {
         if (invSystem == null)
         {
             GameObject invFind = GameObject.Find("InventoryPanel");
             invSystem = invFind.GetComponent<InventorySystem>();
         }
+    }
+
+    private void Start()
+    {
+        isInventoryOpen = false;
+        invHUD.SetActive(false);
     }
 
     // Update is called once per frame
@@ -82,13 +91,15 @@ public class InventoryTesting : MonoBehaviour
             if (invHUD.activeSelf)
             {
                 invHUD.SetActive(false);
-                Time.timeScale = 0f;
+                isInventoryOpen = false;
+                Time.timeScale = 1f;
             }
             else if (!invHUD.activeSelf)
             {
                 invHUD.SetActive(true);
-                Time.timeScale = 1f;
+                isInventoryOpen = true;
                 Cursor.lockState = CursorLockMode.None;
+                Time.timeScale = 0f;
             }
         }
 
@@ -110,9 +121,6 @@ public class InventoryTesting : MonoBehaviour
             }
 
         }
-
-
-
-
     }
+
 }

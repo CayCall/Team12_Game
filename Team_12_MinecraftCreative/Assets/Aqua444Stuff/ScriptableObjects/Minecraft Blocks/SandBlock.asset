@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f21c07f48f187544a01ee3ecae40ff4, type: 3}
+  m_Name: SandBlock
+  m_EditorClassIdentifier: 
+  BlockName: Sand
+  BlockObject: {fileID: 2690986468752133208, guid: 959fa0851013b554e8cc6b81373f8b77, type: 3}
+  ItemsNeededForBuildingBlock: Sand
+  BlockAmount: 1
+  ItemID: 0
+  SlotMax: 99
+  itemIcon: {fileID: 954674902, guid: 65b7e0c285ab54140afdf6ddc74790e3, type: 3}
+  weaponType: 0

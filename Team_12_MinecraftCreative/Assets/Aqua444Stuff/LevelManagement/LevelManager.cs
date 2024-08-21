@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public GameObject PauseScreen;
+    
 
     private void Update()
     {
@@ -20,7 +21,7 @@ public class LevelManager : MonoBehaviour
     //Completely Reset the Level
     public void ResetLevel()
     {
-        SceneManager.LoadScene("GameScene"); //change to appropriate name
+        SceneManager.LoadScene("SampleScene"); //change to appropriate name --> // Change to Sample Scene
         Time.timeScale = 1.0f;
     }
 
@@ -40,6 +41,11 @@ public class LevelManager : MonoBehaviour
     //Return to the Start Screen
     public void ReturnToStart()
     {
-        SceneManager.LoadScene("StartScreen"); //change to appropriate name
+        SceneManager.LoadScene("MainMenu"); //change to appropriate name   --> //changed to main menu
+    }
+
+    public void ViewCredits()
+    {
+        SceneManager.LoadScene("Credits"); // Load our credits scene
     }
 }

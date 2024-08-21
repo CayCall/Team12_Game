@@ -12,7 +12,7 @@ public class InventoryLinq : MonoBehaviour
     //indicator on prefab component control
     GameObject highlightComponent;
 
-    [SerializeField] int invIndex = 0;
+    [SerializeField] public int invIndex = 0;
 
     public float scrollScale = 0.01f;
 
@@ -52,13 +52,19 @@ public class InventoryLinq : MonoBehaviour
 
     public Block LinqIndicatedItem() //function to call the item you wish to build or use based on its item data
     {
-        if (indicatedItem != null)
+        if (indicatedItem == null)
         {
-            return indicatedItem;
+           indicatedItem= new Block();  
         }
 
+        indicatedItem = activeInvSystem.slots[invIndex].itemData;
+        return indicatedItem;
+        //return activeInvSystem[invIndex].Block;
+
+
+/*
         Debug.Log("We cannot do anything");
-        return null;
+        return null;*/
     }
 
 

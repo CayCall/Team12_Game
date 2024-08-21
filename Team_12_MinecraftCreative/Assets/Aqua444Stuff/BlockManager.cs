@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UI;
@@ -25,6 +27,9 @@ public class BlockManager : MonoBehaviour
 
     GameObject lastHightlightedBlock;
 
+    public InventoryLinq Linq;
+    public GameObject InventoryPanel;
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -43,6 +48,7 @@ public class BlockManager : MonoBehaviour
     private void Start()
     {
         //SetText();
+        Linq = InventoryPanel.GetComponent<InventoryLinq>();
     }
 
     void BuildBlock(GameObject block)
@@ -68,21 +74,36 @@ public class BlockManager : MonoBehaviour
         float Scroll = Input.mouseScrollDelta.y;
         if (Scroll > 0)
         {
+            BlockObject = null;
             CurrentBlockIndex++;
-            if (CurrentBlockIndex > AvailableBuildingBlocks.Count - 1)
+            if (CurrentBlockIndex > Linq.invIndex)
             {
                 CurrentBlockIndex = 0;
             }
         }
         else if (Scroll < 0)
         {
+            BlockObject = null;
             CurrentBlockIndex--;
             if (CurrentBlockIndex < 0)
             {
-                CurrentBlockIndex = AvailableBuildingBlocks.Count - 1; 
+                CurrentBlockIndex = Linq.invIndex; 
             }
         }
-        BlockObject = AvailableBuildingBlocks[CurrentBlockIndex];
+
+
+        foreach( Block blockItem in AvailableBuildingBlocks)
+        {
+
+           // BlockObject = AvailableBuildingBlocks[Linq.invIndex];
+            if (blockItem == Linq.LinqIndicatedItem())
+            {
+                BlockObject = blockItem;
+            }
+        }
+       
+            
+        
         //SetText();
     }
 

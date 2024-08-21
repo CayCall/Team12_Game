@@ -35,7 +35,9 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
     //[SerializeField] TMP_Text statDisplayText;
 
 
+    public BlockManager blockManager;
 
+    public bool Hotbar = false;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -72,6 +74,12 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
                 Debug.Log("Drop made");
                 invSlot.AsignSlot(mouseInvItem.asgInvSlot);
                 mouseInvItem.ClearSlot();
+                
+                if (Hotbar)
+                {
+                    blockManager.AvailableBuildingBlocks.Add(invSlot.itemData);
+                }
+
 
 
             }
@@ -135,6 +143,12 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
                 invSlot.UpdateInventorySlot(mouseInvItem.asgInvSlot.itemData, 1); //for the case where we add 1 to a null slot
 
                 mouseInvItem.asgInvSlot.RemoveFromStack(1);
+
+                if (Hotbar)
+                {
+                    blockManager.AvailableBuildingBlocks.Add(invSlot.itemData);
+                }
+
 
 
             }
@@ -432,6 +446,8 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
         //Mouse Object
         GameObject mouseObj = GameObject.Find("MouseObject");
         mouseInvItem = mouseObj.GetComponent<MouseItemData>();
+
+        blockManager = GameObject.FindGameObjectWithTag("Player").GetComponent<BlockManager>();
 
 
 

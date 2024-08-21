@@ -31,6 +31,11 @@ public class InventorySlot : MonoBehaviour
     public void ClearSlot()
     {
         //Debug.Log("Slot cleared");
+        if (blockManager != null)
+        {
+            blockManager.AvailableBuildingBlocks.Remove(itemData);
+            blockManager.BlockObject = null;
+        }
         itemData = null;
         stackSize = -1;
     }
@@ -130,7 +135,7 @@ public class InventorySlot : MonoBehaviour
     {
         indicator.SetActive(false);
 
-        blockManager = GetComponent<BlockManager>();
+        blockManager = GameObject.FindGameObjectWithTag("Player").GetComponent<BlockManager>();
     }
 
     // Update is called once per frame

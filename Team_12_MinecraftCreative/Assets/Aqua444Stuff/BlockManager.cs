@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UI;
@@ -8,11 +10,12 @@ public class BlockManager : MonoBehaviour
 {
     public Transform shootingPoint;
 
-    private Block BlockObject;
+    public Block BlockObject;
 
-    public Text BlockInfo;
+    //public Text BlockInfo;
 
-    public Block[] AvailableBuildingBlocks;
+    //public Block[] AvailableBuildingBlocks;
+    public List <Block> AvailableBuildingBlocks = new List <Block>();
     int CurrentBlockIndex = 0;
 
     private GameObject Block;
@@ -25,6 +28,8 @@ public class BlockManager : MonoBehaviour
     GameObject lastHightlightedBlock;
 
     private bool isInventoryOpen;
+    public InventoryLinq Linq;
+    public GameObject InventoryPanel;
 
     private void Update()
     {
@@ -40,12 +45,14 @@ public class BlockManager : MonoBehaviour
             DestroyBlock();
         }
         HighlightBlock();
+        //ChangeCurretInventorySlot();
         ChangeCurretBlock();
     }
 
     private void Start()
     {
-        SetText();
+        //SetText();
+        Linq = InventoryPanel.GetComponent<InventoryLinq>();
     }
 
     void BuildBlock(GameObject block)
@@ -71,28 +78,43 @@ public class BlockManager : MonoBehaviour
         float Scroll = Input.mouseScrollDelta.y;
         if (Scroll > 0)
         {
+            BlockObject = null;
             CurrentBlockIndex++;
-            if (CurrentBlockIndex > AvailableBuildingBlocks.Length - 1)
+            if (CurrentBlockIndex > Linq.invIndex)
             {
                 CurrentBlockIndex = 0;
             }
         }
         else if (Scroll < 0)
         {
+            BlockObject = null;
             CurrentBlockIndex--;
             if (CurrentBlockIndex < 0)
             {
-                CurrentBlockIndex = AvailableBuildingBlocks.Length - 1; 
+                CurrentBlockIndex = Linq.invIndex; 
             }
         }
-        BlockObject = AvailableBuildingBlocks[CurrentBlockIndex];
-        SetText();
+
+
+        foreach( Block blockItem in AvailableBuildingBlocks)
+        {
+
+           // BlockObject = AvailableBuildingBlocks[Linq.invIndex];
+            if (blockItem == Linq.LinqIndicatedItem())
+            {
+                BlockObject = blockItem;
+            }
+        }
+       
+            
+        
+        //SetText();
     }
 
-    void SetText() //Change/ Remove this
+    /*void SetText() //Change/ Remove this
     {
         BlockInfo.text = BlockObject.BlockName + "\n" + BlockObject.BlockAmount + "x" + BlockObject.ItemsNeededForBuildingBlock;
-    }
+    }*/
     void DestroyBlock()
     {
         if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo))

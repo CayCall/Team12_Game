@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventorySlot : MonoBehaviour
 {
 
 
-    public ItemData itemData;
+    public Block itemData;
 
     public int stackSize;
 
     public GameObject indicator;
+
+    public BlockManager blockManager;
 
 
     public InventorySlot()
@@ -18,7 +21,7 @@ public class InventorySlot : MonoBehaviour
         ClearSlot();
     }
 
-    public InventorySlot(ItemData item, int amount)
+    public InventorySlot(Block item, int amount)
     {
         itemData = item;
         stackSize = amount;
@@ -28,6 +31,11 @@ public class InventorySlot : MonoBehaviour
     public void ClearSlot()
     {
         //Debug.Log("Slot cleared");
+        if (blockManager != null)
+        {
+            blockManager.AvailableBuildingBlocks.Remove(itemData);
+            blockManager.BlockObject = null;
+        }
         itemData = null;
         stackSize = -1;
     }
@@ -48,7 +56,7 @@ public class InventorySlot : MonoBehaviour
     }
 
 
-    public void UpdateInventorySlot(ItemData item, int amount)
+    public void UpdateInventorySlot(Block item, int amount)
     {
         itemData = item;
         stackSize = amount;
@@ -109,7 +117,7 @@ public class InventorySlot : MonoBehaviour
         }
     }
 
-    public void FillUpOtherSlot(ItemData item, int amount)
+    public void FillUpOtherSlot(Block item, int amount)
     {
         //this function will reference our inventory system, and basically look for somewhere else to add to stack
         //an empty slot within our inventory
@@ -126,6 +134,8 @@ public class InventorySlot : MonoBehaviour
     void Start()
     {
         indicator.SetActive(false);
+
+        blockManager = GameObject.FindGameObjectWithTag("Player").GetComponent<BlockManager>();
     }
 
     // Update is called once per frame

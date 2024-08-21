@@ -16,3 +16,7 @@ MonoBehaviour:
   BlockObject: {fileID: 5926502609658300668, guid: d501f5d930d44244994d696f3ee3cffa, type: 3}
   ItemsNeededForBuildingBlock: BlueBlock
   BlockAmount: 3
+  ItemID: 1
+  SlotMax: 99
+  itemIcon: {fileID: 1089888486, guid: 65b7e0c285ab54140afdf6ddc74790e3, type: 3}
+  weaponType: 0

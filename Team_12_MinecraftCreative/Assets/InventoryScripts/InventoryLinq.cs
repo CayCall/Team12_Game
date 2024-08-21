@@ -12,11 +12,11 @@ public class InventoryLinq : MonoBehaviour
     //indicator on prefab component control
     GameObject highlightComponent;
 
-    [SerializeField] int invIndex = 0;
+    [SerializeField] public int invIndex = 0;
 
     public float scrollScale = 0.01f;
 
-    ItemData indicatedItem;
+    Block indicatedItem;
 
     float scrollTimer = 0f;
     [SerializeField]float scrollCooldown = 0.1f;
@@ -46,20 +46,25 @@ public class InventoryLinq : MonoBehaviour
             InventorySlot slot = activeInvSystem.slots[i];
             slot.itemData = mainInvSystem.slots[i].itemData;
             slot.stackSize = mainInvSystem.slots[i].stackSize;
-       
         }
     }
 
 
-    public ItemData LinqIndicatedItem() //function to call the item you wish to build or use based on its item data
+    public Block LinqIndicatedItem() //function to call the item you wish to build or use based on its item data
     {
-        if (indicatedItem != null)
+        if (indicatedItem == null)
         {
-            return indicatedItem;
+           indicatedItem= new Block();  
         }
 
+        indicatedItem = activeInvSystem.slots[invIndex].itemData;
+        return indicatedItem;
+        //return activeInvSystem[invIndex].Block;
+
+
+/*
         Debug.Log("We cannot do anything");
-        return null;
+        return null;*/
     }
 
 
@@ -149,8 +154,6 @@ public class InventoryLinq : MonoBehaviour
     {
         activeInvSystem = GetComponent<InventorySystem>();
         scrollTimer = 0.3f;
-
-        
     }
 
     // Update is called once per frame

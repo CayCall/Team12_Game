@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -26,8 +27,8 @@ public class InventoryTesting : MonoBehaviour
     
     //check open or not
     public bool isInventoryOpen;
-    
 
+    private BlockManager _playerBlockManager;
     Block GenerateItem()
     {
         
@@ -70,6 +71,7 @@ public class InventoryTesting : MonoBehaviour
 
     private void Awake()
     {
+        _playerBlockManager = GameObject.Find("Player").GetComponent<BlockManager>();
         if (invSystem == null)
         {
             GameObject invFind = GameObject.Find("InventoryPanel");
@@ -91,14 +93,18 @@ public class InventoryTesting : MonoBehaviour
             //Open or close our inventory tab
             if (invHUD.activeSelf)
             {
-                invHUD.SetActive(false);
                 isInventoryOpen = false;
+                StartCoroutine(disableBlockPlace());
+                invHUD.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 Time.timeScale = 1f;
             }
             else if (!invHUD.activeSelf)
-            {
-                invHUD.SetActive(true);
+            { 
                 isInventoryOpen = true;
+                StartCoroutine(disableBlockPlace());
+                invHUD.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 Time.timeScale = 0f;
@@ -125,4 +131,18 @@ public class InventoryTesting : MonoBehaviour
         }
     }
 
+    IEnumerator disableBlockPlace()
+    {
+        if (isInventoryOpen)
+        {
+            _playerBlockManager.enabled = false;
+        }
+
+        if(!isInventoryOpen)
+        {
+            _playerBlockManager.enabled = true;    
+        }
+        
+        yield return isInventoryOpen = false;
+    }
 }

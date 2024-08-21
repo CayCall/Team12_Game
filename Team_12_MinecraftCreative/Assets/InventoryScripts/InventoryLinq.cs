@@ -16,7 +16,7 @@ public class InventoryLinq : MonoBehaviour
 
     public float scrollScale = 0.01f;
 
-    ItemData indicatedItem;
+    Block indicatedItem;
 
     float scrollTimer = 0f;
     [SerializeField]float scrollCooldown = 0.1f;
@@ -46,12 +46,11 @@ public class InventoryLinq : MonoBehaviour
             InventorySlot slot = activeInvSystem.slots[i];
             slot.itemData = mainInvSystem.slots[i].itemData;
             slot.stackSize = mainInvSystem.slots[i].stackSize;
-       
         }
     }
 
 
-    public ItemData LinqIndicatedItem() //function to call the item you wish to build or use based on its item data
+    public Block LinqIndicatedItem() //function to call the item you wish to build or use based on its item data
     {
         if (indicatedItem != null)
         {
@@ -149,8 +148,6 @@ public class InventoryLinq : MonoBehaviour
     {
         activeInvSystem = GetComponent<InventorySystem>();
         scrollTimer = 0.3f;
-
-        
     }
 
     // Update is called once per frame

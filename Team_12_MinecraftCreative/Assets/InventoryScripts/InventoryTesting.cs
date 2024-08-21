@@ -12,17 +12,17 @@ public class InventoryTesting : MonoBehaviour
 
     //public List<ItemData> data;
 
-    ItemData itemGenerated;
+    Block itemGenerated;
     int itemStackSize;
 
-    [SerializeField] ItemData testItem1;
-    [SerializeField] ItemData testItem2;
-    [SerializeField] ItemData testItem3;
-    [SerializeField] ItemData testItem4;
+    [SerializeField] Block testItem1;
+    [SerializeField] Block testItem2;
+    [SerializeField] Block testItem3;
+    [SerializeField] Block testItem4;
 
     [SerializeField] int itemGenCount = 1;
 
-    ItemData GenerateItem()
+    Block GenerateItem()
     {
        
         

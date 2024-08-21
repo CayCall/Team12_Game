@@ -8,11 +8,12 @@ public class BlockManager : MonoBehaviour
 {
     public Transform shootingPoint;
 
-    private Block BlockObject;
+    public Block BlockObject;
 
-    public Text BlockInfo;
+    //public Text BlockInfo;
 
-    public Block[] AvailableBuildingBlocks;
+    //public Block[] AvailableBuildingBlocks;
+    public List <Block> AvailableBuildingBlocks = new List <Block>();
     int CurrentBlockIndex = 0;
 
     private GameObject Block;
@@ -35,12 +36,13 @@ public class BlockManager : MonoBehaviour
             DestroyBlock();
         }
         HighlightBlock();
+        //ChangeCurretInventorySlot();
         ChangeCurretBlock();
     }
 
     private void Start()
     {
-        SetText();
+        //SetText();
     }
 
     void BuildBlock(GameObject block)
@@ -67,7 +69,7 @@ public class BlockManager : MonoBehaviour
         if (Scroll > 0)
         {
             CurrentBlockIndex++;
-            if (CurrentBlockIndex > AvailableBuildingBlocks.Length - 1)
+            if (CurrentBlockIndex > AvailableBuildingBlocks.Count - 1)
             {
                 CurrentBlockIndex = 0;
             }
@@ -77,17 +79,17 @@ public class BlockManager : MonoBehaviour
             CurrentBlockIndex--;
             if (CurrentBlockIndex < 0)
             {
-                CurrentBlockIndex = AvailableBuildingBlocks.Length - 1; 
+                CurrentBlockIndex = AvailableBuildingBlocks.Count - 1; 
             }
         }
         BlockObject = AvailableBuildingBlocks[CurrentBlockIndex];
-        SetText();
+        //SetText();
     }
 
-    void SetText() //Change/ Remove this
+    /*void SetText() //Change/ Remove this
     {
         BlockInfo.text = BlockObject.BlockName + "\n" + BlockObject.BlockAmount + "x" + BlockObject.ItemsNeededForBuildingBlock;
-    }
+    }*/
     void DestroyBlock()
     {
         if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo))

@@ -16,3 +16,7 @@ MonoBehaviour:
   BlockObject: {fileID: 3439915223290508942, guid: e939572d2c5b2984e9ec1ee466c5dc8b, type: 3}
   ItemsNeededForBuildingBlock: Stone
   BlockAmount: 2
+  ItemID: 0
+  SlotMax: 99
+  itemIcon: {fileID: -1648749985, guid: 65b7e0c285ab54140afdf6ddc74790e3, type: 3}
+  weaponType: 0

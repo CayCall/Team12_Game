@@ -16,3 +16,7 @@ MonoBehaviour:
   BlockObject: {fileID: 5068246275644534345, guid: 2fe79a04c4dd461428dd85e97bbae13c, type: 3}
   ItemsNeededForBuildingBlock: PurpleBlock
   BlockAmount: 2
+  ItemID: 7
+  SlotMax: 99
+  itemIcon: {fileID: 1824862905, guid: 65b7e0c285ab54140afdf6ddc74790e3, type: 3}
+  weaponType: 0

@@ -24,7 +24,8 @@ public class MainMenuCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        camPosition.transform.Rotate(0, 5 * Time.deltaTime, 0);
+        
       
 
         

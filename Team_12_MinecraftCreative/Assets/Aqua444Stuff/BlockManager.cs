@@ -37,9 +37,14 @@ public class BlockManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                BuildBlock(BlockObject.BlockObject);
+                if(BlockObject != null)
+                {
+                   BuildBlock(BlockObject.BlockObject);
+                }
+              
             }
         }
+       
         if (Input.GetMouseButtonDown(1))
         {
             DestroyBlock();

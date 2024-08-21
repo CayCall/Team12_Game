@@ -444,8 +444,12 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
 
 
         //Mouse Object
-        GameObject mouseObj = GameObject.Find("MouseObject");
-        mouseInvItem = mouseObj.GetComponent<MouseItemData>();
+        if(mouseInvItem == null)
+        {
+            GameObject mouseObj = GameObject.Find("MouseObject");
+            mouseInvItem = mouseObj.GetComponent<MouseItemData>();
+        }
+
 
         blockManager = GameObject.FindGameObjectWithTag("Player").GetComponent<BlockManager>();
 

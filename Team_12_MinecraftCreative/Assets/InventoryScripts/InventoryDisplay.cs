@@ -35,69 +35,140 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
     //[SerializeField] TMP_Text statDisplayText;
 
 
+    public BlockManager blockManager;
 
+    public bool Hotbar = false;
 
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("We've clicked on an inventory slot");
 
-        if(eventData.button == PointerEventData.InputButton.Left)
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
             Debug.Log("We left clicked the slot");
+
+
+
+
+            if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null) //Begin Drag
+            {
+
+                //HighlightOn();
+
+                Debug.Log("Clicked a slot");
+                mouseInvItem.UpdateMouseSlot(invSlot);
+                invSlot.ClearSlot();
+                mouseInvItem.mouseCanvasGroup.blocksRaycasts = false;
+                //HighlightOff();
+
+                return;
+
+
+            }
+
+            else if (invSlot.itemData == null && mouseInvItem.asgInvSlot.itemData != null) // Drop
+            {
+
+
+
+                Debug.Log("Drop made");
+                invSlot.AsignSlot(mouseInvItem.asgInvSlot);
+                mouseInvItem.ClearSlot();
+                
+                if (Hotbar)
+                {
+                    blockManager.AvailableBuildingBlocks.Add(invSlot.itemData);
+                }
+
+
+
+            }
+
+            else if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData != null)
+            {
+                if (invSlot.itemData == mouseInvItem.asgInvSlot.itemData)
+                {
+                    invSlot.AddToStack(mouseInvItem.asgInvSlot.stackSize);
+                    mouseInvItem.asgInvSlot.RemoveFromStack(mouseInvItem.asgInvSlot.stackSize);
+                    return;
+                }
+
+                else 
+                {
+                    InventorySlot switchSlot = new InventorySlot();
+                    switchSlot.UpdateInventorySlot(invSlot.itemData, invSlot.stackSize);
+
+                    invSlot.AsignSlot(mouseInvItem.asgInvSlot);
+                    mouseInvItem.UpdateMouseSlot(switchSlot);
+
+                    return;
+                }
+            }
+
         }
+
+
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
             Debug.Log("We right clicked");
+
+            if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null) //Pick up half
+            {
+
+                //Creating a slot to store values just incase this slot is cleared
+                InventorySlot saveSlot = new InventorySlot();
+                saveSlot.UpdateInventorySlot(invSlot.itemData, invSlot.stackSize);
+
+                
+                int stackRemoved = invSlot.RemoveRightClick();
+                mouseInvItem.UpdateMouseSlot(saveSlot,stackRemoved);
+
+         
+                mouseInvItem.mouseCanvasGroup.blocksRaycasts = false;
+                
+
+                return;
+
+
+            }
+
+            else if (invSlot.itemData == null && mouseInvItem.asgInvSlot.itemData != null) // Drop just 1
+            {
+
+                //initialiaze, add 1 to inventory, and make sure it stays stationary in this position
+
+                Debug.Log("Drop made");
+                //invSlot.AsignSlot(mouseInvItem.asgInvSlot);
+
+                invSlot.UpdateInventorySlot(mouseInvItem.asgInvSlot.itemData, 1); //for the case where we add 1 to a null slot
+
+                mouseInvItem.asgInvSlot.RemoveFromStack(1);
+
+                if (Hotbar)
+                {
+                    blockManager.AvailableBuildingBlocks.Add(invSlot.itemData);
+                }
+
+
+
+            }
+
+            else if(invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData != null)
+            {
+                if(invSlot.itemData == mouseInvItem.asgInvSlot.itemData)
+                {
+                    //just add one to the stack 
+                    invSlot.AddToStack(1);
+                    mouseInvItem.asgInvSlot.RemoveFromStack(1);
+                }
+               
+            }
+
+
         }
 
 
 
-        if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null) //Begin Drag
-        {
-
-            //HighlightOn();
-           
-            Debug.Log("Clicked a slot");
-            mouseInvItem.UpdateMouseSlot(invSlot);
-            invSlot.ClearSlot();
-            mouseInvItem.mouseCanvasGroup.blocksRaycasts = false;
-            //HighlightOff();
-
-            return;
-
-
-        }
-
-        else if (invSlot.itemData == null && mouseInvItem.asgInvSlot.itemData != null) // Drop
-        {
-
-
-
-            Debug.Log("Drop made");
-            invSlot.AsignSlot(mouseInvItem.asgInvSlot);
-            mouseInvItem.ClearSlot();
-
-
-        }
-
-        else if(invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData != null)
-        {
-            Debug.Log("Switch");
-            var itemSwitch = invSlot.itemData;
-            var stackSwitch = invSlot.stackSize;
-
-            InventorySlot switchSlot = new InventorySlot();
-            switchSlot.UpdateInventorySlot(itemSwitch,stackSwitch);
-
-            invSlot.AsignSlot(mouseInvItem.asgInvSlot);
-            mouseInvItem.UpdateMouseSlot(switchSlot);
-
-            return;
-        }
-
-      
-
-       
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -375,6 +446,8 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
         //Mouse Object
         GameObject mouseObj = GameObject.Find("MouseObject");
         mouseInvItem = mouseObj.GetComponent<MouseItemData>();
+
+        blockManager = GameObject.FindGameObjectWithTag("Player").GetComponent<BlockManager>();
 
 
 

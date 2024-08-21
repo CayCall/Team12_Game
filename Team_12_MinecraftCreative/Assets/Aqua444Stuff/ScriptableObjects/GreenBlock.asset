@@ -16,3 +16,7 @@ MonoBehaviour:
   BlockObject: {fileID: 4077490829595270709, guid: 9a7870a908eec5f4f91530dd1b462722, type: 3}
   ItemsNeededForBuildingBlock: YellowBlock
   BlockAmount: 1
+  ItemID: 2
+  SlotMax: 99
+  itemIcon: {fileID: 2098510859, guid: 65b7e0c285ab54140afdf6ddc74790e3, type: 3}
+  weaponType: 0

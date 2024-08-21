@@ -25,7 +25,7 @@ public class InventorySystem : MonoBehaviour
 
 
 
-    public bool AddToInventory(ItemData itemToAdd, int amountToAdd)
+    public bool AddToInventory(Block itemToAdd, int amountToAdd)
     {
 
         foreach (InventorySlot slot in slots)

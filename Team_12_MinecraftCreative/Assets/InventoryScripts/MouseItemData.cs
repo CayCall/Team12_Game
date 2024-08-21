@@ -31,7 +31,14 @@ public class MouseItemData : MonoBehaviour
         itemSprite.color = Color.white;
     }
 
+    public void UpdateMouseSlot(InventorySlot invSlot,int stackSize)
+    {
+        asgInvSlot.UpdateInventorySlot(invSlot.itemData, stackSize);
+        itemSprite.sprite = invSlot.itemData.itemIcon;
+        itemStackSize.text = invSlot.stackSize.ToString();
+        itemSprite.color = Color.white;
 
+    }
 
     // Start is called before the first frame update
     void Start()

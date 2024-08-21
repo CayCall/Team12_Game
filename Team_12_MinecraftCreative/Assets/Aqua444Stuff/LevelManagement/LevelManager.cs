@@ -14,6 +14,8 @@ public class LevelManager : MonoBehaviour
         //Pause the game
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             PauseScreen.SetActive(true);
             Time.timeScale = 0f;
         }
@@ -35,7 +37,13 @@ public class LevelManager : MonoBehaviour
     public void ResumeGame()
     {
         PauseScreen.SetActive(false);
+
+       
         Time.timeScale = 1.0f;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
     }
 
     //Return to the Start Screen

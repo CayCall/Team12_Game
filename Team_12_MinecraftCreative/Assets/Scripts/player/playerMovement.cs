@@ -48,8 +48,8 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         // CAM bob effect
         initialPosition = playerCamera.transform.localPosition;

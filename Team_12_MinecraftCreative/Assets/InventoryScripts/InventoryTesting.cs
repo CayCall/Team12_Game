@@ -100,6 +100,7 @@ public class InventoryTesting : MonoBehaviour
                 invHUD.SetActive(true);
                 isInventoryOpen = true;
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 Time.timeScale = 0f;
             }
         }

@@ -59,6 +59,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
                 Debug.Log("Clicked a slot");
                 mouseInvItem.UpdateMouseSlot(invSlot);
                 invSlot.ClearSlot();
+                
                 mouseInvItem.mouseCanvasGroup.blocksRaycasts = false;
                 //HighlightOff();
 
@@ -254,6 +255,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
             itemCount.text = invSlot.stackSize.ToString();
 
             itemImageHolder.GetComponent<Image>().sprite = invSlot.itemData.itemIcon;
+            itemImageHolder.GetComponent<Image>().color = Color.white;
         }
 
         else if (invSlot.itemData == null)
@@ -261,6 +263,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
             itemCount.text = "";
 
             itemImageHolder.GetComponent<Image>().sprite = null;
+            itemImageHolder.GetComponent<Image>().color = Color.clear;
         }
 
     }

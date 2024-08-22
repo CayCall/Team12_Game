@@ -9,27 +9,22 @@ using UnityEngine.UI;
 public class BlockManager : MonoBehaviour
 {
     public Transform shootingPoint;
-
     public Block BlockObject;
-
     //public Text BlockInfo;
-
     //public Block[] AvailableBuildingBlocks;
     public List <Block> AvailableBuildingBlocks = new List <Block>();
     int CurrentBlockIndex = 0;
-
-    private GameObject Block;
-
     public Transform parent;
-
     public Color normalColor;
     public Color highlightedColor;
-
     GameObject lastHightlightedBlock;
-
-    private bool isInventoryOpen;
     public InventoryLinq Linq;
     public GameObject InventoryPanel;
+    
+    
+    private GameObject Block;
+    private bool isInventoryOpen;
+    private AudioManager _audioManager;
 
     private void Update()
     {
@@ -58,6 +53,7 @@ public class BlockManager : MonoBehaviour
     {
         //SetText();
         Linq = InventoryPanel.GetComponent<InventoryLinq>();
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void BuildBlock(GameObject block)
@@ -68,6 +64,7 @@ public class BlockManager : MonoBehaviour
             {
                 Vector3 spawnPosition = new Vector3(Mathf.RoundToInt(hitInfo.point.x + hitInfo.normal.x / 2), Mathf.RoundToInt(hitInfo.point.y + hitInfo.normal.y / 2), Mathf.RoundToInt(hitInfo.point.z + hitInfo.normal.z / 2));
                 Instantiate(block, spawnPosition, Quaternion.identity, parent);
+                _audioManager.PlaySound("PlaceBlock");
             }
             else if (hitInfo.transform.tag == "Non-build")
             {
@@ -77,6 +74,7 @@ public class BlockManager : MonoBehaviour
             {
                 Vector3 spawnPosition = new Vector3(Mathf.RoundToInt(hitInfo.point.x), Mathf.RoundToInt(hitInfo.point.y), Mathf.RoundToInt(hitInfo.point.z));
                 Instantiate(block, spawnPosition, Quaternion.identity, parent);
+                  _audioManager.PlaySound("PlaceBlock");
             }
         }
     }

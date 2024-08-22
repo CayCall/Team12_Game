@@ -84,6 +84,31 @@ public class InventoryLinq : MonoBehaviour
         Debug.Log("We cannot do anything");
         return null;*/
     }
+    
+    public int HotbarBlocksCount(Block blockItemData)
+    {
+        int count = 0;
+        foreach(InventorySlot slot in activeInvSystem.slots)
+        {
+            if(slot.itemData == blockItemData)
+            {
+                count++;
+
+                if (count > 1)
+                {
+                    return count;
+                }
+            }
+
+        }
+
+        if(count <= 1)
+        { 
+            return count;
+        }
+
+        return count;
+    }
 
 
     public void InvMouseWheelDown(int number)

@@ -16,6 +16,8 @@ public class MainMenuCam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(Time.timeScale);
+        Time.timeScale = 1;
         menuTxt.RandomiseSplash();
         menuTxt.OutputEntry();
         text.text = menuTxt.OutputText;

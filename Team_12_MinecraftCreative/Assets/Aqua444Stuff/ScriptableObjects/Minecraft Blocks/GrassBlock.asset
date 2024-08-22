@@ -18,5 +18,5 @@ MonoBehaviour:
   BlockAmount: 0
   ItemID: 0
   SlotMax: 99
-  itemIcon: {fileID: 2098510859, guid: 65b7e0c285ab54140afdf6ddc74790e3, type: 3}
+  itemIcon: {fileID: 21300000, guid: 03be9fe4ba2b39a4eb4252b44a2a8202, type: 3}
   weaponType: 0

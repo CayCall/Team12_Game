@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f21c07f48f187544a01ee3ecae40ff4, type: 3}
-  m_Name: WoodBlock
+  m_Name: OakPlanks
   m_EditorClassIdentifier: 
-  BlockName: Wood
-  BlockObject: {fileID: 4259793274711513127, guid: 8511be4dc4fba134bbe20d2d7c27a6c5, type: 3}
+  BlockName: Oak Planks
+  BlockObject: {fileID: 6752619077733458980, guid: b4ce9bb0751329a429ab222f60351c33, type: 3}
   ItemsNeededForBuildingBlock: Wood
   BlockAmount: 0
   ItemID: 0
   SlotMax: 99
-  itemIcon: {fileID: 21300000, guid: d8f481ba67ddef34dba336bf4dcaa062, type: 3}
+  itemIcon: {fileID: 21300000, guid: 0d923bb7e4ecf6e4a98d820483b53f3f, type: 3}
   weaponType: 0

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f21c07f48f187544a01ee3ecae40ff4, type: 3}
-  m_Name: WoodBlock
+  m_Name: BirchPlanks
   m_EditorClassIdentifier: 
-  BlockName: Wood
-  BlockObject: {fileID: 4259793274711513127, guid: 8511be4dc4fba134bbe20d2d7c27a6c5, type: 3}
+  BlockName: Birch Planks
+  BlockObject: {fileID: 7191040579492579513, guid: ccc23c48ac6abe04bb7c2623f065ebbf, type: 3}
   ItemsNeededForBuildingBlock: Wood
   BlockAmount: 0
   ItemID: 0
   SlotMax: 99
-  itemIcon: {fileID: 21300000, guid: d8f481ba67ddef34dba336bf4dcaa062, type: 3}
+  itemIcon: {fileID: 21300000, guid: f65c9637ececec34f81c2735b472cd42, type: 3}
   weaponType: 0

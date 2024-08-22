@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class InventorySlot : MonoBehaviour
 {
@@ -34,11 +35,19 @@ public class InventorySlot : MonoBehaviour
     public void ClearSlot()
     {
         //Debug.Log("Slot cleared");
-        if (blockManager != null)
+      /*  if (blockManager != null)
         {
-            blockManager.AvailableBuildingBlocks.Remove(itemData);
-            blockManager.BlockObject = null;
-        }
+            InventoryLinq blockSlotCheck = GameObject.FindAnyObjectByType<InventoryLinq>();
+            if (blockSlotCheck != null)
+            {
+                if (blockSlotCheck.HotbarBlocksCount(itemData) <= 1)
+                {
+                    blockManager.AvailableBuildingBlocks.Remove(itemData);
+                    blockManager.BlockObject = null;
+                }
+            }
+
+        }*/
 
         itemData = null;
         stackSize = -1;

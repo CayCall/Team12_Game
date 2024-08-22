@@ -16,8 +16,10 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
     public InventorySlot invSlot;
 
     bool highlightInvSlot;
-    //[SerializeField] Image backdropImage;
-    Color backdropColor;
+    [SerializeField] Image backdropImage;
+    [SerializeField]Color backdropColor;
+    [SerializeField] Color highlightColor;
+    
 
     [SerializeField] MouseItemData mouseInvItem;
 
@@ -58,7 +60,16 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
 
                 Debug.Log("Clicked a slot");
                 mouseInvItem.UpdateMouseSlot(invSlot);
+
+                if (Hotbar)
+                {
+                    blockManager.AvailableBuildingBlocks.Remove(invSlot.itemData);
+                    blockManager.BlockObject = null;
+                }
+
                 invSlot.ClearSlot();
+
+              
                 
                 mouseInvItem.mouseCanvasGroup.blocksRaycasts = false;
                 //HighlightOff();
@@ -100,7 +111,17 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
                     InventorySlot switchSlot = new InventorySlot();
                     switchSlot.UpdateInventorySlot(invSlot.itemData, invSlot.stackSize);
 
+                    if(Hotbar)
+                    {
+                        blockManager.AvailableBuildingBlocks.Remove(invSlot.itemData);
+                    }
                     invSlot.AsignSlot(mouseInvItem.asgInvSlot);
+
+                    if (Hotbar)
+                    {
+                        blockManager.AvailableBuildingBlocks.Add(invSlot.itemData);
+                    }
+
                     mouseInvItem.UpdateMouseSlot(switchSlot);
 
                     return;
@@ -178,16 +199,85 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
         //So if the slot we click on has an item, and the mouse does not have an item, we want to pick up
 
 
-      /* if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null)
-        {
-            Debug.Log("Drag begin");
-            mouseInvItem.UpdateMouseSlot(invSlot);
-            invSlot.ClearSlot();
-            mouseInvItem.mouseCanvasGroup.blocksRaycasts = false;
-            //HighlightOff();
+        /* if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null)
+          {
+              Debug.Log("Drag begin");
+              mouseInvItem.UpdateMouseSlot(invSlot);
+              invSlot.ClearSlot();
+              mouseInvItem.mouseCanvasGroup.blocksRaycasts = false;
+              //HighlightOff();
 
-            return;
-        }*/
+              return;
+          }*/
+
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Debug.Log("We left clicked the slot");
+
+
+
+
+            if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null) //Begin Drag
+            {
+
+                //HighlightOn();
+
+                Debug.Log("Clicked a slot");
+                mouseInvItem.UpdateMouseSlot(invSlot);
+
+                if (Hotbar)
+                {
+                    blockManager.AvailableBuildingBlocks.Remove(invSlot.itemData);
+                    blockManager.BlockObject = null;
+                }
+
+
+                invSlot.ClearSlot();
+
+                mouseInvItem.mouseCanvasGroup.blocksRaycasts = false;
+                //HighlightOff();
+
+                return;
+
+
+            }
+
+           
+
+           
+
+        }
+
+
+        else if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            Debug.Log("We right dragging");
+
+            if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null) //Pick up half
+            {
+
+                //Creating a slot to store values just incase this slot is cleared
+                InventorySlot saveSlot = new InventorySlot();
+                saveSlot.UpdateInventorySlot(invSlot.itemData, invSlot.stackSize);
+
+
+                int stackRemoved = invSlot.RemoveRightClick();
+                mouseInvItem.UpdateMouseSlot(saveSlot, stackRemoved);
+
+
+                mouseInvItem.mouseCanvasGroup.blocksRaycasts = false;
+
+
+                return;
+
+
+            }
+
+           
+
+
+        }
+
 
 
     }
@@ -267,6 +357,20 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
         }
 
     }
+
+
+    public void HighlightHover()
+    {
+        if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition))
+        {
+            backdropImage.color = highlightColor;
+        }
+        else
+        {
+            backdropImage.color = backdropColor;
+        }
+    }
+
 
   /*  public void HighlightOn()
     {
@@ -430,22 +534,8 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
         highlightInvSlot = false;
         //itemImage = itemImageHolder.GetComponent<Image>().sprite;
 
-        //activeButton.interactable = false;
-        //dropButton.interactable = false;
-
-
-        //weaponControl = GameObject.Find("ActiveWeapon");
-
-        //StatDisplay
-        //GameObject statObj = GameObject.Find("ItemInformation");
-        //statDisplayImage = statObj.GetComponent<Image>();
-
-        //GameObject wordObj = GameObject.Find("Stat");
-        //statDisplayText = wordObj.GetComponent<TextMeshProUGUI>();
-
-        //statDisplayImage.color = Color.clear;
-        //statDisplayText.text = "";
-
+        //backdropColor = this.gameObject.GetComponent<Image>().color;
+  
 
         //Mouse Object
         if(mouseInvItem == null)
@@ -468,6 +558,11 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
         UpdateSlot();
 
         //HighligtActive();
+
+        
+        HighlightHover();
+        
+        
 
         SlotBecomeEmpty();
 

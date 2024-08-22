@@ -550,9 +550,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 574289331}
     - target: {fileID: 2965768331198073496, guid: 46873eb175bbfde42ab1b6c031b24bb7, type: 3}
+      propertyPath: cubeItem
+      value: 
+      objectReference: {fileID: 498253535}
+    - target: {fileID: 2965768331198073496, guid: 46873eb175bbfde42ab1b6c031b24bb7, type: 3}
+      propertyPath: itemHeldObj
+      value: 
+      objectReference: {fileID: 498253535}
+    - target: {fileID: 2965768331198073496, guid: 46873eb175bbfde42ab1b6c031b24bb7, type: 3}
       propertyPath: mainInvSystem
       value: 
       objectReference: {fileID: 1122924225}
+    - target: {fileID: 2965768331198073496, guid: 46873eb175bbfde42ab1b6c031b24bb7, type: 3}
+      propertyPath: defaultItemHeld
+      value: 
+      objectReference: {fileID: 10650, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 3047329098346931447, guid: 46873eb175bbfde42ab1b6c031b24bb7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

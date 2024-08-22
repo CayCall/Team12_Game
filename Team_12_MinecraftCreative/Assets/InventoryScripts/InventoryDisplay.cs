@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
@@ -446,8 +447,9 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
         //Mouse Object
         if(mouseInvItem == null)
         {
-            GameObject mouseObj = GameObject.Find("MouseObject");
-            mouseInvItem = mouseObj.GetComponent<MouseItemData>();
+          
+            mouseInvItem = GameObject.FindFirstObjectByType<MouseItemData>();
+           
         }
 
 

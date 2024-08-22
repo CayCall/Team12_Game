@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -508,6 +508,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8518685376281033500, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
   m_PrefabInstance: {fileID: 1423895099}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1346748730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6768103135755820699, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
+  m_PrefabInstance: {fileID: 1423895099}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71d8a1008b678b24690547ef6e4d1af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1423895099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -672,6 +683,10 @@ PrefabInstance:
       propertyPath: blockManager
       value: 
       objectReference: {fileID: 342927546}
+    - target: {fileID: 1418241999687688870, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
+      propertyPath: mouseInvItem
+      value: 
+      objectReference: {fileID: 1346748730}
     - target: {fileID: 1540679129213061959, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -704,10 +719,18 @@ PrefabInstance:
       propertyPath: blockManager
       value: 
       objectReference: {fileID: 342927546}
+    - target: {fileID: 1734851005966538373, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
+      propertyPath: mouseInvItem
+      value: 
+      objectReference: {fileID: 1346748730}
     - target: {fileID: 1783152320161528144, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
       propertyPath: blockManager
       value: 
       objectReference: {fileID: 342927546}
+    - target: {fileID: 1783152320161528144, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
+      propertyPath: mouseInvItem
+      value: 
+      objectReference: {fileID: 1346748730}
     - target: {fileID: 1804180019236163644, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
       propertyPath: blockManager
       value: 
@@ -796,6 +819,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1911645361746009813, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
+      propertyPath: blockManager
+      value: 
+      objectReference: {fileID: 342927546}
     - target: {fileID: 1929882737862257220, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1012,6 +1039,10 @@ PrefabInstance:
       propertyPath: blockManager
       value: 
       objectReference: {fileID: 342927546}
+    - target: {fileID: 4167883017814258044, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
+      propertyPath: mouseInvItem
+      value: 
+      objectReference: {fileID: 1346748730}
     - target: {fileID: 4184444247185561542, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
       propertyPath: blockManager
       value: 
@@ -1028,6 +1059,10 @@ PrefabInstance:
       propertyPath: blockManager
       value: 
       objectReference: {fileID: 342927546}
+    - target: {fileID: 4253913971869651327, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
+      propertyPath: mouseInvItem
+      value: 
+      objectReference: {fileID: 1346748730}
     - target: {fileID: 4291101008793126342, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
       propertyPath: blockManager
       value: 
@@ -1172,6 +1207,10 @@ PrefabInstance:
       propertyPath: blockManager
       value: 
       objectReference: {fileID: 342927546}
+    - target: {fileID: 5116970448036707804, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
+      propertyPath: mouseInvItem
+      value: 
+      objectReference: {fileID: 1346748730}
     - target: {fileID: 5150692728501365742, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1252,6 +1291,10 @@ PrefabInstance:
       propertyPath: blockManager
       value: 
       objectReference: {fileID: 342927546}
+    - target: {fileID: 5756783340623268237, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
+      propertyPath: mouseInvItem
+      value: 
+      objectReference: {fileID: 1346748730}
     - target: {fileID: 5798109747002639647, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1280,6 +1323,10 @@ PrefabInstance:
       propertyPath: blockManager
       value: 
       objectReference: {fileID: 342927546}
+    - target: {fileID: 6359831542304374268, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
+      propertyPath: mouseInvItem
+      value: 
+      objectReference: {fileID: 1346748730}
     - target: {fileID: 6381484870840144553, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
       propertyPath: blockManager
       value: 
@@ -1444,6 +1491,10 @@ PrefabInstance:
       propertyPath: blockManager
       value: 
       objectReference: {fileID: 342927546}
+    - target: {fileID: 7755199008503073056, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
+      propertyPath: mouseInvItem
+      value: 
+      objectReference: {fileID: 1346748730}
     - target: {fileID: 7775932821145813072, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
       propertyPath: blockManager
       value: 
@@ -1452,6 +1503,10 @@ PrefabInstance:
       propertyPath: blockManager
       value: 
       objectReference: {fileID: 342927546}
+    - target: {fileID: 7848853462102799417, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
+      propertyPath: mouseInvItem
+      value: 
+      objectReference: {fileID: 1346748730}
     - target: {fileID: 7923638538485887616, guid: 10e53fb3a5909f94ea360b2a29c9d09f, type: 3}
       propertyPath: blockManager
       value: 

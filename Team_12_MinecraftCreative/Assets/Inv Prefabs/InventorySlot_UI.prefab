@@ -229,6 +229,7 @@ MonoBehaviour:
   itemData: {fileID: 0}
   stackSize: -1
   indicator: {fileID: 8348008962345659870}
+  blockManager: {fileID: 0}
 --- !u!114 &7090310482605926994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +247,8 @@ MonoBehaviour:
   invSlot: {fileID: 7169455961453948139}
   mouseInvItem: {fileID: 0}
   invPanel: {fileID: 2011133157517382956}
+  blockManager: {fileID: 0}
+  Hotbar: 0
 --- !u!1 &5521472274774924107
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,14 +382,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9490196, g: 0.57205075, b: 0.28946242, a: 0.9529412}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.9529412}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 21a03953e38de2d4d969d55014931a58, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

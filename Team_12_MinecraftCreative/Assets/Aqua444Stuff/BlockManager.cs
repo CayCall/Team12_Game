@@ -39,9 +39,14 @@ public class BlockManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                BuildBlock(BlockObject.BlockObject);
+                if(BlockObject != null)
+                {
+                   BuildBlock(BlockObject.BlockObject);
+                }
+              
             }
         }
+       
         if (Input.GetMouseButtonDown(1))
         {
             DestroyBlock();
@@ -61,11 +66,14 @@ public class BlockManager : MonoBehaviour
     {
         if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo))
         {
-
             if (hitInfo.transform.tag == "Block")
             {
                 Vector3 spawnPosition = new Vector3(Mathf.RoundToInt(hitInfo.point.x + hitInfo.normal.x / 2), Mathf.RoundToInt(hitInfo.point.y + hitInfo.normal.y / 2), Mathf.RoundToInt(hitInfo.point.z + hitInfo.normal.z / 2));
                 Instantiate(block, spawnPosition, Quaternion.identity, parent);
+            }
+            else if (hitInfo.transform.tag == "Non-build")
+            {
+                
             }
             else
             {

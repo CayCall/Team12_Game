@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f21c07f48f187544a01ee3ecae40ff4, type: 3}
+  m_Name: ObsidianBlock
+  m_EditorClassIdentifier: 
+  BlockName: Obsidian
+  BlockObject: {fileID: 378681943298283380, guid: 3bb591af950100a4b99e04667aa0ecc5, type: 3}
+  ItemsNeededForBuildingBlock: Obsidian
+  BlockAmount: 0
+  ItemID: 0
+  SlotMax: 0
+  itemIcon: {fileID: 21300000, guid: 53f512c382a3bee4ca0ab55c0f0cb381, type: 3}
+  weaponType: 0

@@ -31,6 +31,8 @@ public class BlockManager : MonoBehaviour
     public InventoryLinq Linq;
     public GameObject InventoryPanel;
 
+    public ParticleSystem Dust;
+
     private void Update()
     {
         if (!isInventoryOpen )
@@ -121,6 +123,8 @@ public class BlockManager : MonoBehaviour
         {
             if (hitInfo.transform.tag == "Block")
             {
+                GameObject Explosion = Instantiate(Dust.gameObject);
+                Destroy(Explosion, 1.0f);
                 Destroy(hitInfo.transform.gameObject);
             }
         }

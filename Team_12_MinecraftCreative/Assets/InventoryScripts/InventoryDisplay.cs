@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
@@ -58,6 +59,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
                 Debug.Log("Clicked a slot");
                 mouseInvItem.UpdateMouseSlot(invSlot);
                 invSlot.ClearSlot();
+                
                 mouseInvItem.mouseCanvasGroup.blocksRaycasts = false;
                 //HighlightOff();
 
@@ -253,6 +255,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
             itemCount.text = invSlot.stackSize.ToString();
 
             itemImageHolder.GetComponent<Image>().sprite = invSlot.itemData.itemIcon;
+            itemImageHolder.GetComponent<Image>().color = Color.white;
         }
 
         else if (invSlot.itemData == null)
@@ -260,6 +263,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
             itemCount.text = "";
 
             itemImageHolder.GetComponent<Image>().sprite = null;
+            itemImageHolder.GetComponent<Image>().color = Color.clear;
         }
 
     }
@@ -444,8 +448,13 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
 
 
         //Mouse Object
-        GameObject mouseObj = GameObject.Find("MouseObject");
-        mouseInvItem = mouseObj.GetComponent<MouseItemData>();
+        if(mouseInvItem == null)
+        {
+          
+            mouseInvItem = GameObject.FindFirstObjectByType<MouseItemData>();
+           
+        }
+
 
         blockManager = GameObject.FindGameObjectWithTag("Player").GetComponent<BlockManager>();
 

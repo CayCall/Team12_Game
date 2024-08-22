@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class InventorySlot : MonoBehaviour
     public GameObject indicator;
 
     public BlockManager blockManager;
+
+    //public Image itemImageHolder;
 
 
     public InventorySlot()
@@ -36,8 +39,15 @@ public class InventorySlot : MonoBehaviour
             blockManager.AvailableBuildingBlocks.Remove(itemData);
             blockManager.BlockObject = null;
         }
+
         itemData = null;
         stackSize = -1;
+
+        /*if(itemImageHolder != null)
+        {
+            itemImageHolder.color = Color.clear;
+        }*/
+        
     }
 
     public void AsignSlot(InventorySlot invSlot)
@@ -46,12 +56,16 @@ public class InventorySlot : MonoBehaviour
         if (itemData == invSlot.itemData)
         {
             AddToStack(invSlot.stackSize);
+           
         }
         else
         {
             itemData = invSlot.itemData;
             stackSize = 0;
+           
             AddToStack(invSlot.stackSize);
+
+            //itemImageHolder.color = Color.white;
         }
     }
 
@@ -60,6 +74,8 @@ public class InventorySlot : MonoBehaviour
     {
         itemData = item;
         stackSize = amount;
+
+        //itemImageHolder.color = Color.white;
     }
 
 
@@ -136,6 +152,8 @@ public class InventorySlot : MonoBehaviour
         indicator.SetActive(false);
 
         blockManager = GameObject.FindGameObjectWithTag("Player").GetComponent<BlockManager>();
+
+
     }
 
     // Update is called once per frame

@@ -27,15 +27,26 @@ public class BlockManager : MonoBehaviour
 
     GameObject lastHightlightedBlock;
 
+    private bool isInventoryOpen;
     public InventoryLinq Linq;
     public GameObject InventoryPanel;
 
+    public ParticleSystem Dust;
+
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!isInventoryOpen )
         {
-            BuildBlock(BlockObject.BlockObject);
+            if (Input.GetMouseButtonDown(0))
+            {
+                if(BlockObject != null)
+                {
+                   BuildBlock(BlockObject.BlockObject);
+                }
+              
+            }
         }
+       
         if (Input.GetMouseButtonDown(1))
         {
             DestroyBlock();
@@ -55,11 +66,14 @@ public class BlockManager : MonoBehaviour
     {
         if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo))
         {
-
             if (hitInfo.transform.tag == "Block")
             {
                 Vector3 spawnPosition = new Vector3(Mathf.RoundToInt(hitInfo.point.x + hitInfo.normal.x / 2), Mathf.RoundToInt(hitInfo.point.y + hitInfo.normal.y / 2), Mathf.RoundToInt(hitInfo.point.z + hitInfo.normal.z / 2));
                 Instantiate(block, spawnPosition, Quaternion.identity, parent);
+            }
+            else if (hitInfo.transform.tag == "Non-build")
+            {
+                
             }
             else
             {
@@ -117,6 +131,8 @@ public class BlockManager : MonoBehaviour
         {
             if (hitInfo.transform.tag == "Block")
             {
+                GameObject Explosion = Instantiate(Dust.gameObject,hitInfo.transform.position,Quaternion.identity);
+                Destroy(Explosion, 3.0f);
                 Destroy(hitInfo.transform.gameObject);
             }
         }

@@ -29,7 +29,7 @@ public class playerMovement : MonoBehaviour
         public float frequency = 1.0f;  // Speed of bobbing effect
         public float smoothTime = 0.1f; // Time for smooth transitions
     #endregion
-
+    
     #region ShootVariables
     [Header("Shoot")]
         public bool Shoot;
@@ -45,6 +45,11 @@ public class playerMovement : MonoBehaviour
         private CharacterController _characterController;
     #endregion
 
+    #region 
+         private bool isInventoryOpen;
+         private float lastClickTime =0.125f;
+         private float doubleClickTime = 0.1f;
+         #endregion
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
@@ -57,9 +62,12 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
-        HandleMovement();
-        HandleRotation();
-        HandleCreativeMovement();
+        if (!isInventoryOpen)
+        {
+            HandleMovement();
+            HandleRotation();
+            HandleCreativeMovement();        
+        }
     }
 
     private void HandleMovement()
@@ -134,8 +142,8 @@ public class playerMovement : MonoBehaviour
             {
                 movement.y -= creativeSpeed * Time.deltaTime;
             }
-
-            _characterController.Move(movement);
+            
+             _characterController.Move(movement);
         }
     }
 

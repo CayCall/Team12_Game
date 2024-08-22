@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class InventoryTesting : MonoBehaviour
 {
@@ -21,10 +24,13 @@ public class InventoryTesting : MonoBehaviour
     [SerializeField] Block testItem4;
 
     [SerializeField] int itemGenCount = 1;
+    
+    //check open or not
+    public bool isInventoryOpen;
 
+    private BlockManager _playerBlockManager;
     Block GenerateItem()
     {
-       
         
         if(itemGenCount == 1)
         {
@@ -63,14 +69,20 @@ public class InventoryTesting : MonoBehaviour
 
     }
 
-
-    void Start()
+    private void Awake()
     {
+        _playerBlockManager = GameObject.Find("Player").GetComponent<BlockManager>();
         if (invSystem == null)
         {
             GameObject invFind = GameObject.Find("InventoryPanel");
             invSystem = invFind.GetComponent<InventorySystem>();
         }
+    }
+
+    private void Start()
+    {
+        isInventoryOpen = false;
+        invHUD.SetActive(false);
     }
 
     // Update is called once per frame
@@ -81,11 +93,21 @@ public class InventoryTesting : MonoBehaviour
             //Open or close our inventory tab
             if (invHUD.activeSelf)
             {
+                isInventoryOpen = false;
+                StartCoroutine(disableBlockPlace());
                 invHUD.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                Time.timeScale = 1f;
             }
             else if (!invHUD.activeSelf)
-            {
+            { 
+                isInventoryOpen = true;
+                StartCoroutine(disableBlockPlace());
                 invHUD.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                Time.timeScale = 0f;
             }
         }
 
@@ -107,9 +129,20 @@ public class InventoryTesting : MonoBehaviour
             }
 
         }
+    }
 
+    IEnumerator disableBlockPlace()
+    {
+        if (isInventoryOpen)
+        {
+            _playerBlockManager.enabled = false;
+        }
 
-
-
+        if(!isInventoryOpen)
+        {
+            _playerBlockManager.enabled = true;    
+        }
+        
+        yield return isInventoryOpen = false;
     }
 }

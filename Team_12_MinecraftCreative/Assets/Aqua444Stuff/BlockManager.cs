@@ -131,8 +131,8 @@ public class BlockManager : MonoBehaviour
         {
             if (hitInfo.transform.tag == "Block")
             {
-                GameObject Explosion = Instantiate(Dust.gameObject);
-                Destroy(Explosion, 1.0f);
+                GameObject Explosion = Instantiate(Dust.gameObject,hitInfo.transform.position,Quaternion.identity);
+                Destroy(Explosion, 3.0f);
                 Destroy(hitInfo.transform.gameObject);
             }
         }

@@ -15,7 +15,7 @@ public class InventorySlot : MonoBehaviour
 
     public GameObject indicator;
 
-    public BlockManager blockManager;
+    //public BlockManager blockManager;
 
     //public Image itemImageHolder;
 
@@ -160,7 +160,7 @@ public class InventorySlot : MonoBehaviour
     {
         indicator.SetActive(false);
 
-        blockManager = GameObject.FindGameObjectWithTag("Player").GetComponent<BlockManager>();
+        //blockManager = GameObject.FindGameObjectWithTag("Player").GetComponent<BlockManager>();
 
 
     }

@@ -10,6 +10,8 @@ public class BlockManager : MonoBehaviour
 {
     public Transform shootingPoint;
 
+    float shootingDistance = 8f;
+
     public Block BlockObject;
 
     //public Text BlockInfo;
@@ -62,7 +64,7 @@ public class BlockManager : MonoBehaviour
 
     void BuildBlock(GameObject block)
     {
-        if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo))
+        if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo, shootingDistance))
         {
             if (hitInfo.transform.tag == "Block")
             {
@@ -125,7 +127,7 @@ public class BlockManager : MonoBehaviour
     }*/
     void DestroyBlock()
     {
-        if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo))
+        if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo,shootingDistance))
         {
             if (hitInfo.transform.tag == "Block")
             {
@@ -136,7 +138,7 @@ public class BlockManager : MonoBehaviour
 
     void HighlightBlock()
     {
-        if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo))
+        if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo, shootingDistance))
         {
             if (hitInfo.transform.tag == "Block")
             {

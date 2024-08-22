@@ -178,16 +178,77 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
         //So if the slot we click on has an item, and the mouse does not have an item, we want to pick up
 
 
-      /* if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null)
-        {
-            Debug.Log("Drag begin");
-            mouseInvItem.UpdateMouseSlot(invSlot);
-            invSlot.ClearSlot();
-            mouseInvItem.mouseCanvasGroup.blocksRaycasts = false;
-            //HighlightOff();
+        /* if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null)
+          {
+              Debug.Log("Drag begin");
+              mouseInvItem.UpdateMouseSlot(invSlot);
+              invSlot.ClearSlot();
+              mouseInvItem.mouseCanvasGroup.blocksRaycasts = false;
+              //HighlightOff();
 
-            return;
-        }*/
+              return;
+          }*/
+
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Debug.Log("We left clicked the slot");
+
+
+
+
+            if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null) //Begin Drag
+            {
+
+                //HighlightOn();
+
+                Debug.Log("Clicked a slot");
+                mouseInvItem.UpdateMouseSlot(invSlot);
+                invSlot.ClearSlot();
+
+                mouseInvItem.mouseCanvasGroup.blocksRaycasts = false;
+                //HighlightOff();
+
+                return;
+
+
+            }
+
+           
+
+           
+
+        }
+
+
+        else if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            Debug.Log("We right dragging");
+
+            if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null) //Pick up half
+            {
+
+                //Creating a slot to store values just incase this slot is cleared
+                InventorySlot saveSlot = new InventorySlot();
+                saveSlot.UpdateInventorySlot(invSlot.itemData, invSlot.stackSize);
+
+
+                int stackRemoved = invSlot.RemoveRightClick();
+                mouseInvItem.UpdateMouseSlot(saveSlot, stackRemoved);
+
+
+                mouseInvItem.mouseCanvasGroup.blocksRaycasts = false;
+
+
+                return;
+
+
+            }
+
+           
+
+
+        }
+
 
 
     }

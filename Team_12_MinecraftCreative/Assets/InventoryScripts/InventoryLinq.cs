@@ -21,6 +21,10 @@ public class InventoryLinq : MonoBehaviour
     float scrollTimer = 0f;
     [SerializeField]float scrollCooldown = 0.1f;
 
+    public GameObject itemHeldObj;
+    public Material defaultItemHeld;
+    Material itemHeld;
+
 
     void Indicating()
     {
@@ -30,6 +34,20 @@ public class InventoryLinq : MonoBehaviour
             {
                 slot.indicator.SetActive(true);
                 indicatedItem = slot.itemData; //we can then use this information to determine what kind of block to build
+
+                if(slot.itemData != null)
+                {
+                    itemHeld = slot.itemData.BlockObject.GetComponent<MeshRenderer>().sharedMaterial;
+                    itemHeldObj.GetComponent<MeshRenderer>().material = itemHeld;
+                }
+                else
+                {
+                    itemHeld = defaultItemHeld;
+                    itemHeldObj.GetComponent<MeshRenderer>().material = itemHeld;
+                }
+                
+
+
             }
 
             else
@@ -154,6 +172,9 @@ public class InventoryLinq : MonoBehaviour
     {
         activeInvSystem = GetComponent<InventorySystem>();
         scrollTimer = 0.3f;
+
+
+       
     }
 
     // Update is called once per frame

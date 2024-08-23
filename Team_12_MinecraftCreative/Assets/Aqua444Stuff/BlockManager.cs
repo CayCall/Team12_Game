@@ -21,8 +21,9 @@ public class BlockManager : MonoBehaviour
     GameObject lastHightlightedBlock;
     public InventoryLinq Linq;
     public GameObject InventoryPanel;
-    
-    
+
+    public ParticleSystem Dust;
+     
     private GameObject Block;
     private bool isInventoryOpen;
     private AudioManager _audioManager;
@@ -120,16 +121,14 @@ public class BlockManager : MonoBehaviour
         //SetText();
     }
 
-    /*void SetText() //Change/ Remove this
-    {
-        BlockInfo.text = BlockObject.BlockName + "\n" + BlockObject.BlockAmount + "x" + BlockObject.ItemsNeededForBuildingBlock;
-    }*/
     void DestroyBlock()
     {
         if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo, shootingDistance))
         {
             if (hitInfo.transform.tag == "Block")
             {
+                GameObject Explosion = Instantiate(Dust.gameObject,hitInfo.transform.position, Quaternion.identity);
+                Destroy(Explosion, 3.0f);
                 Destroy(hitInfo.transform.gameObject);
                 _audioManager.PlaySound("DestroyBlock");
             }

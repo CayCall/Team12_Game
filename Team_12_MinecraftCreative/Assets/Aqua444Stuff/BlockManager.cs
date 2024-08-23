@@ -84,6 +84,7 @@ public class BlockManager : MonoBehaviour
         float Scroll = Input.mouseScrollDelta.y;
         if (Scroll > 0)
         {
+            _audioManager.PlaySound("ItemSlotMove");
             BlockObject = null;
             CurrentBlockIndex++;
             if (CurrentBlockIndex > Linq.invIndex)
@@ -93,6 +94,7 @@ public class BlockManager : MonoBehaviour
         }
         else if (Scroll < 0)
         {
+            _audioManager.PlaySound("ItemSlotMove");
             BlockObject = null;
             CurrentBlockIndex--;
             if (CurrentBlockIndex < 0)
@@ -128,6 +130,7 @@ public class BlockManager : MonoBehaviour
             if (hitInfo.transform.tag == "Block")
             {
                 Destroy(hitInfo.transform.gameObject);
+                _audioManager.PlaySound("DestroyBlock");
             }
         }
     }

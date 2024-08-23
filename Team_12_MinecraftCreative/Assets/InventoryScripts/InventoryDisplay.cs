@@ -21,6 +21,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
     [SerializeField] MouseItemData mouseInvItem;
 
     public RectTransform invPanel;
+    private AudioManager _audioManager;
 
     //public Button activeButton;
     //public Button dropButton;
@@ -39,17 +40,20 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
 
     public bool Hotbar = false;
 
+    void Awake()
+    {
+        // itemImage = itemImageHolder.GetComponent<Image>().sprite;
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("We've clicked on an inventory slot");
-
+        _audioManager.PlaySound("UI Item");
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             Debug.Log("We left clicked the slot");
-
-
-
-
+            
             if (invSlot.itemData != null && mouseInvItem.asgInvSlot.itemData == null) //Begin Drag
             {
 
@@ -250,6 +254,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
     {
         if (invSlot.itemData != null)
         {
+            
             itemCount.text = invSlot.stackSize.ToString();
 
             itemImageHolder.GetComponent<Image>().sprite = invSlot.itemData.itemIcon;
@@ -414,10 +419,6 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IBeginDragH
 
     
 
-    void Awake()
-    {
-        // itemImage = itemImageHolder.GetComponent<Image>().sprite;
-    }
 
     // Start is called before the first frame update
     void Start()

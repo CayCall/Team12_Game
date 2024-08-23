@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+   
     [System.Serializable]
     public struct AudioClipInfo
     {
@@ -25,17 +26,35 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-
-    public void PlaySound(string soundName)
+    // Play sound with optional looping
+    public void PlaySound(string soundName, bool loop = false)
     {
         if (audioDictionary.ContainsKey(soundName))
         {
-            audioSource.PlayOneShot(audioDictionary[soundName]);
+            if (loop)
+            {
+                audioSource.clip = audioDictionary[soundName];
+                audioSource.loop = true;
+                audioSource.Play();
+            }
+            else
+            {
+                audioSource.PlayOneShot(audioDictionary[soundName]);
+            }
         }
         else
         {
-            Debug.LogWarning("Sound clp is not found: " + soundName);
+            Debug.LogWarning("Sound clip not found: " + soundName);
         }
     }
-    
+
+    // Stop sound if it's playing
+    public void StopSound()
+    {
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+            audioSource.loop = false;
+        }
+    }
 }

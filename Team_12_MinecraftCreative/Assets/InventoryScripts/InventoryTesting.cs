@@ -25,7 +25,7 @@ public class InventoryTesting : MonoBehaviour
 
     [SerializeField] int itemGenCount = 1;
     private AudioManager _audioManager;
-    
+
     //check open or not
     public bool isInventoryOpen;
 
@@ -101,18 +101,16 @@ public class InventoryTesting : MonoBehaviour
                 invHUD.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-                Time.timeScale = 1f;
             }
             else if (!invHUD.activeSelf)
-            { 
-                
+            {
+
                 isInventoryOpen = true;
                 _audioManager.PlaySound("OpenMenu");
                 StartCoroutine(disableBlockPlace());
                 invHUD.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                Time.timeScale = 0f;
             }
         }
     }

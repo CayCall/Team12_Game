@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class BlockManager : MonoBehaviour
 {
     public Transform shootingPoint;
-    float shootingDistance = 8f;
+    [SerializeField]float shootingDistance = 8f;
     public Block BlockObject;
     //public Text BlockInfo;
     //public Block[] AvailableBuildingBlocks;
@@ -62,15 +62,16 @@ public class BlockManager : MonoBehaviour
     {
         if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo,shootingDistance))
         {
+            Debug.DrawRay(shootingPoint.position, shootingPoint.forward, Color.red);
             if (hitInfo.transform.tag == "Block")
             {
                 Vector3 spawnPosition = new Vector3(Mathf.RoundToInt(hitInfo.point.x + hitInfo.normal.x / 2), Mathf.RoundToInt(hitInfo.point.y + hitInfo.normal.y / 2), Mathf.RoundToInt(hitInfo.point.z + hitInfo.normal.z / 2));
                 Instantiate(block, spawnPosition, Quaternion.identity, parent);
                 _audioManager.PlaySound("PlaceBlock");
             }
-            else if (hitInfo.transform.tag == "Non-build")
+            else if (hitInfo.transform.tag == "Non-build" || hitInfo.transform.tag == "Player")
             {
-                
+                    
             }
             else
             {

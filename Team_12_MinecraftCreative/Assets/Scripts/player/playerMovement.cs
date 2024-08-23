@@ -109,10 +109,9 @@ public class playerMovement : MonoBehaviour
             }
             else if (!isWalking && wasWalking)
             {
-                _audioManager.StopSound(); 
+                _audioManager.StopSound();
             }
-
-       
+            
 
             // Jumping
             bool wasJumping = isJumping;

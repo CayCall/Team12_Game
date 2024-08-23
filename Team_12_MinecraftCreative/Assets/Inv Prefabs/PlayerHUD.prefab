@@ -117,6 +117,8 @@ MonoBehaviour:
   invIndex: 0
   scrollScale: 0.01
   scrollCooldown: 0.05
+  itemHeldObj: {fileID: 0}
+  defaultItemHeld: {fileID: 10650, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1329370136185960278
 GameObject:
   m_ObjectHideFlags: 0

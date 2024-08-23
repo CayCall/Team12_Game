@@ -9,31 +9,24 @@ using UnityEngine.UI;
 public class BlockManager : MonoBehaviour
 {
     public Transform shootingPoint;
-
     float shootingDistance = 8f;
-
     public Block BlockObject;
-
     //public Text BlockInfo;
-
     //public Block[] AvailableBuildingBlocks;
     public List <Block> AvailableBuildingBlocks = new List <Block>();
     int CurrentBlockIndex = 0;
-
-    private GameObject Block;
-
     public Transform parent;
-
     public Color normalColor;
     public Color highlightedColor;
-
     GameObject lastHightlightedBlock;
-
-    private bool isInventoryOpen;
     public InventoryLinq Linq;
     public GameObject InventoryPanel;
 
     public ParticleSystem Dust;
+     
+    private GameObject Block;
+    private bool isInventoryOpen;
+    private AudioManager _audioManager;
 
     private void Update()
     {
@@ -62,16 +55,18 @@ public class BlockManager : MonoBehaviour
     {
         //SetText();
         Linq = InventoryPanel.GetComponent<InventoryLinq>();
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void BuildBlock(GameObject block)
     {
-        if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo, shootingDistance))
+        if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo,shootingDistance))
         {
             if (hitInfo.transform.tag == "Block")
             {
                 Vector3 spawnPosition = new Vector3(Mathf.RoundToInt(hitInfo.point.x + hitInfo.normal.x / 2), Mathf.RoundToInt(hitInfo.point.y + hitInfo.normal.y / 2), Mathf.RoundToInt(hitInfo.point.z + hitInfo.normal.z / 2));
                 Instantiate(block, spawnPosition, Quaternion.identity, parent);
+                _audioManager.PlaySound("PlaceBlock");
             }
             else if (hitInfo.transform.tag == "Non-build")
             {
@@ -81,6 +76,7 @@ public class BlockManager : MonoBehaviour
             {
                 Vector3 spawnPosition = new Vector3(Mathf.RoundToInt(hitInfo.point.x), Mathf.RoundToInt(hitInfo.point.y), Mathf.RoundToInt(hitInfo.point.z));
                 Instantiate(block, spawnPosition, Quaternion.identity, parent);
+                  _audioManager.PlaySound("PlaceBlock");
             }
         }
     }
@@ -90,6 +86,7 @@ public class BlockManager : MonoBehaviour
         float Scroll = Input.mouseScrollDelta.y;
         if (Scroll > 0)
         {
+            _audioManager.PlaySound("ItemSlotMove");
             BlockObject = null;
             CurrentBlockIndex++;
             if (CurrentBlockIndex > Linq.invIndex)
@@ -99,6 +96,7 @@ public class BlockManager : MonoBehaviour
         }
         else if (Scroll < 0)
         {
+            _audioManager.PlaySound("ItemSlotMove");
             BlockObject = null;
             CurrentBlockIndex--;
             if (CurrentBlockIndex < 0)
@@ -123,19 +121,16 @@ public class BlockManager : MonoBehaviour
         //SetText();
     }
 
-    /*void SetText() //Change/ Remove this
-    {
-        BlockInfo.text = BlockObject.BlockName + "\n" + BlockObject.BlockAmount + "x" + BlockObject.ItemsNeededForBuildingBlock;
-    }*/
     void DestroyBlock()
     {
-        if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo,shootingDistance))
+        if (Physics.Raycast(shootingPoint.position, shootingPoint.forward, out RaycastHit hitInfo, shootingDistance))
         {
             if (hitInfo.transform.tag == "Block")
             {
-                GameObject Explosion = Instantiate(Dust.gameObject,hitInfo.transform.position,Quaternion.identity);
+                GameObject Explosion = Instantiate(Dust.gameObject,hitInfo.transform.position, Quaternion.identity);
                 Destroy(Explosion, 3.0f);
                 Destroy(hitInfo.transform.gameObject);
+                _audioManager.PlaySound("DestroyBlock");
             }
         }
     }

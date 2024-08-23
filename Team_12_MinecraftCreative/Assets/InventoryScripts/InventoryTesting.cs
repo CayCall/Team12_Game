@@ -24,6 +24,7 @@ public class InventoryTesting : MonoBehaviour
     [SerializeField] Block testItem4;
 
     [SerializeField] int itemGenCount = 1;
+    private AudioManager _audioManager;
     
     //check open or not
     public bool isInventoryOpen;
@@ -72,6 +73,7 @@ public class InventoryTesting : MonoBehaviour
     private void Awake()
     {
         _playerBlockManager = GameObject.Find("Player").GetComponent<BlockManager>();
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         if (invSystem == null)
         {
             GameObject invFind = GameObject.Find("InventoryPanel");
@@ -94,6 +96,7 @@ public class InventoryTesting : MonoBehaviour
             if (invHUD.activeSelf)
             {
                 isInventoryOpen = false;
+                _audioManager.PlaySound("OpenMenu");
                 StartCoroutine(disableBlockPlace());
                 invHUD.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
@@ -102,32 +105,15 @@ public class InventoryTesting : MonoBehaviour
             }
             else if (!invHUD.activeSelf)
             { 
+                
                 isInventoryOpen = true;
+                _audioManager.PlaySound("OpenMenu");
                 StartCoroutine(disableBlockPlace());
                 invHUD.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 Time.timeScale = 0f;
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-
-            itemGenerated = GenerateItem();
-            itemStackSize = Random.Range(1, 20);
-
-
-            // Generate and add a random item to inventory
-            if (invSystem.AddToInventory(itemGenerated, itemStackSize))
-            {
-                Debug.Log("Item got added to Invenotry");
-            }
-            else
-            {
-                Debug.Log("Cannot add to inventory");
-            }
-
         }
     }
 

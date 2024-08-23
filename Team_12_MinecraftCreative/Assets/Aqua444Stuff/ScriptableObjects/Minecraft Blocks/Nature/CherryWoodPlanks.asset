@@ -17,6 +17,6 @@ MonoBehaviour:
   ItemsNeededForBuildingBlock: Wood
   BlockAmount: 0
   ItemID: 0
-  SlotMax: 0
+  SlotMax: 99
   itemIcon: {fileID: 21300000, guid: e330c4d74e0e0294ba0eeaac87e7ec70, type: 3}
   weaponType: 0

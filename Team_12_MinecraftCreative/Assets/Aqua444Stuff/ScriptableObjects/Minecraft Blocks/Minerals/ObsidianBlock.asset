@@ -17,6 +17,6 @@ MonoBehaviour:
   ItemsNeededForBuildingBlock: Obsidian
   BlockAmount: 0
   ItemID: 0
-  SlotMax: 0
+  SlotMax: 99
   itemIcon: {fileID: 21300000, guid: 53f512c382a3bee4ca0ab55c0f0cb381, type: 3}
   weaponType: 0
